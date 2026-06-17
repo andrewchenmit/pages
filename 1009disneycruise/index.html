@@ -1,1 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disney Cruise · Mexican Riviera · Oct 8–12, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight: #0c1631;
+  --navy: #152354;
+  --ocean: #1a4f8a;
+  --wave: #1e6fa8;
+  --gold: #f0c040;
+  --gold-lt: #fde98a;
+  --gold-dk: #c49b10;
+  --orange: #e85d04;
+  --orange-lt: #ff8c00;
+  --pumpkin: rgba(232,93,4,0.12);
+  --ghost: #f5f2ef;
+  --sand: #fdf8f0;
+  --stone: #8a7f72;
+  --stone-dk: #5c5248;
+  --ink: #1a1527;
+  --mist: #c8d8f0;
+  --sea-foam: #7ec8e3;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: var(--ghost); color: var(--ink); overflow-x: hidden; }
 
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--midnight);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Starfield */
+.stars { position: absolute; inset: 0; }
+.stars::before, .stars::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.stars::before {
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 18% 6%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 25% 20%, rgba(240,192,64,.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 15%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 50% 5%, rgba(255,255,255,.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 58% 22%, rgba(240,192,64,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 10%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 72% 18%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 7%, rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 14%, rgba(240,192,64,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 94% 9%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 12% 30%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 35%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 32%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 28%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 25%, rgba(255,255,255,.5) 0%, transparent 100%);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+.stars::after {
+  background-image:
+    radial-gradient(1px 1px at 5% 40%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 45%, rgba(240,192,64,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 38%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 62% 42%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 36%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 96% 44%, rgba(240,192,64,.4) 0%, transparent 100%);
+  animation: twinkle 6s ease-in-out infinite alternate-reverse;
+}
+@keyframes twinkle {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 7%;
+  right: 12%;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff8d0, #f0c040 50%, #c49b10);
+  box-shadow: 0 0 30px rgba(240,192,64,.5), 0 0 80px rgba(240,192,64,.2);
+  animation: moonGlow 5s ease-in-out infinite alternate;
+}
+.moon::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 14px;
+  width: 54px; height: 72px;
+  border-radius: 50%;
+  background: var(--midnight);
+  transform: translateX(8px);
+}
+@keyframes moonGlow {
+  0% { box-shadow: 0 0 30px rgba(240,192,64,.5), 0 0 80px rgba(240,192,64,.2); }
+  100% { box-shadow: 0 0 40px rgba(240,192,64,.7), 0 0 120px rgba(240,192,64,.3); }
+}
+
+/* Ocean / Horizon */
+.ocean-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, #0a2a5e 0%, #0d3d7a 30%, #0e4a8a 60%, #0f5295 100%);
+}
+.ocean-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(30,111,168,.3) 60%, transparent 80%);
+  animation: oceanShimmer 8s ease-in-out infinite alternate;
+}
+@keyframes oceanShimmer {
+  0% { opacity: 0.4; transform: translateX(-5%); }
+  100% { opacity: 0.8; transform: translateX(5%); }
+}
+
+/* Waves */
+.waves-svg {
+  position: absolute;
+  bottom: 42%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.waves-svg svg { display: block; width: 100%; }
+
+/* Ship SVG */
+.ship-wrap {
+  position: absolute;
+  bottom: 42%;
+  left: 50%;
+  transform: translateX(-50%) translateY(30%);
+  width: min(480px, 80vw);
+  animation: shipRock 8s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+@keyframes shipRock {
+  0%, 100% { transform: translateX(-50%) translateY(30%) rotate(-0.5deg); }
+  50% { transform: translateX(-50%) translateY(28%) rotate(0.5deg); }
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 5vw 7vh;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(.65rem, 1.4vw, .78rem);
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .3s;
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  line-height: 1.05;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+  opacity: 0;
+  animation: fadeUp .9s ease forwards .5s;
+}
+.hero-title span {
+  display: block;
+  font-size: clamp(1.2rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--gold-lt);
+  letter-spacing: .05em;
+  margin-top: .3rem;
+}
+.hero-sub {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: clamp(.82rem, 1.8vw, 1rem);
+  color: var(--mist);
+  letter-spacing: .08em;
+  margin-top: 1.2rem;
+  opacity: 0;
+  animation: fadeUp .9s ease forwards .8s;
+}
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1.6rem;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp .9s ease forwards 1s;
+}
+.pill {
+  padding: .35rem .85rem;
+  border: 1px solid rgba(240,192,64,.35);
+  border-radius: 100px;
+  font-size: .73rem;
+  color: var(--mist);
+  letter-spacing: .04em;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(4px);
+}
+
+/* ── FLIGHT DETAIL INLINE ── */
+.flight-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: .3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem;
+  color: var(--stone);
+  letter-spacing: .04em;
+}
+.flight-detail .fd-num {
+  font-weight: 500;
+  color: var(--ocean);
+}
+.flight-detail .fd-conf {
+  color: var(--stone);
+}
+.conf-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem;
+  color: var(--stone);
+  letter-spacing: .04em;
+}
+
+/* ── DAY NAV ── */
+.day-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12,22,49,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(240,192,64,.15);
+  padding: .6rem 5vw;
+  display: flex;
+  gap: .3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  flex-shrink: 0;
+  padding: .38rem .78rem;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--mist);
+  text-decoration: none;
+  letter-spacing: .04em;
+  transition: all .18s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.day-nav a:hover, .day-nav a.active {
+  background: var(--gold);
+  color: var(--midnight);
+  border-color: var(--gold);
+}
+
+/* ── CONTAINER ── */
+.container { max-width: 860px; margin: 0 auto; padding: 0 5vw; }
+
+/* ── DAY SECTION ── */
+.day-section {
+  padding: 0 0 4rem;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.day-section.visible { opacity: 1; transform: translateY(0); }
+
+/* Day header */
+.day-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin: 3.5rem 0 2rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid rgba(26,80,138,.2);
+}
+.day-badge {
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  background: var(--midnight);
+  border: 2px solid var(--gold);
+}
+.day-badge .day-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.day-badge .day-label {
+  font-size: .44rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+}
+.day-badge.halloween {
+  background: #1a0a00;
+  border-color: var(--orange);
+}
+.day-badge.halloween .day-num,
+.day-badge.halloween .day-label { color: var(--orange); }
+
+.day-meta {}
+.day-date {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  margin-bottom: .3rem;
+}
+.day-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--midnight);
+}
+.day-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-top: .65rem;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .18rem .52rem;
+  border-radius: 4px;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.t-fly { background: rgba(26,80,138,.1); color: var(--ocean); }
+.t-food { background: rgba(200,168,64,.15); color: var(--gold-dk); }
+.t-disney { background: rgba(232,93,4,.1); color: var(--orange); }
+.t-walk { background: rgba(26,80,138,.08); color: #2d6ea0; }
+.t-hotel { background: rgba(90,70,50,.1); color: #6b4f2a; }
+.t-ship { background: rgba(12,22,49,.1); color: var(--midnight); }
+.t-halloween { background: rgba(232,93,4,.12); color: var(--orange); }
+.t-mx { background: rgba(40,140,80,.1); color: #286045; }
+.t-free { background: rgba(40,160,100,.1); color: #1e7a48; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 2.2rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold) 0%, rgba(240,192,64,.1) 100%);
+}
+.ev {
+  position: relative;
+  margin-bottom: 1.6rem;
+  padding-left: 1rem;
+}
+.ev::before {
+  content: '✦';
+  position: absolute;
+  left: -2.3rem;
+  top: 2px;
+  font-size: .6rem;
+  color: var(--gold);
+  opacity: .6;
+}
+.ev.hl::before {
+  color: var(--orange);
+  opacity: 1;
+  font-size: .75rem;
+  top: 1px;
+}
+.ev-time {
+  font-family: 'DM Mono', monospace;
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--stone);
+  margin-bottom: .15rem;
+}
+.ev-text {
+  font-size: .95rem;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* ── CARDS ── */
+.card {
+  margin-top: .75rem;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(26,80,138,.1);
+  box-shadow: 0 2px 18px rgba(12,22,49,.06);
+  transition: box-shadow .22s;
+}
+.card:hover { box-shadow: 0 6px 28px rgba(12,22,49,.1); }
+.card-body { padding: 1rem 1.2rem 1.1rem; }
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--midnight);
+  margin-bottom: .3rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.card-text {
+  font-size: .8rem;
+  color: var(--stone-dk);
+  line-height: 1.65;
+}
+.card-text strong { color: var(--ink); font-weight: 700; }
+.card-text a { color: var(--ocean); }
+
+/* Orange accent card */
+.card.disney-card { border-left: 3px solid var(--orange); }
+.card.gold-card { border-left: 3px solid var(--gold); }
+.card.ocean-card { border-left: 3px solid var(--ocean); }
+
+/* Ratings */
+.ratings { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .55rem; }
+.rb {
+  display: inline-flex;
+  align-items: center;
+  gap: .22rem;
+  padding: .22rem .55rem;
+  border-radius: 4px;
+  font-size: .68rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .18s;
+}
+.rb:hover { opacity: .78; }
+.rb-g { background: rgba(66,133,244,.1); color: #2a65c0; }
+.rb-web { background: rgba(240,192,64,.12); color: #9a7a10; }
+.rb-map { background: rgba(26,80,138,.1); color: var(--ocean); }
+
+/* Quote */
+.quote {
+  margin-top: .7rem;
+  padding: .65rem .9rem;
+  background: #f0f7ff;
+  border-left: 2px solid var(--ocean);
+  border-radius: 0 7px 7px 0;
+  font-style: italic;
+  font-size: .78rem;
+  color: var(--stone-dk);
+  line-height: 1.6;
+}
+.quote.orange-quote {
+  background: rgba(232,93,4,.06);
+  border-left-color: var(--orange);
+  color: #6b3010;
+}
+.quote.gold-quote {
+  background: rgba(240,192,64,.08);
+  border-left-color: var(--gold);
+  color: #6b5010;
+}
+
+/* Directions button */
+.dir-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .38rem;
+  margin-top: .45rem;
+  padding: .32rem .75rem .32rem .6rem;
+  background: var(--midnight);
+  color: #fff;
+  border-radius: 5px;
+  font-size: .69rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: background .18s, transform .14s;
+}
+.dir-btn:hover { background: var(--navy); transform: translateY(-1px); }
+.dir-btn.orange-btn { background: var(--orange); }
+.dir-btn.orange-btn:hover { background: var(--orange-lt); }
+
+/* Info table */
+.hotel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .78rem;
+  margin-top: .6rem;
+}
+.hotel-table th {
+  padding: .4rem .7rem;
+  text-align: left;
+  background: var(--midnight);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+.hotel-table th:first-child { border-radius: 6px 0 0 0; }
+.hotel-table th:last-child { border-radius: 0 6px 0 0; }
+.hotel-table td {
+  padding: .4rem .7rem;
+  border-bottom: 1px solid rgba(26,80,138,.1);
+  color: var(--stone-dk);
+}
+.hotel-table td:first-child { font-weight: 700; color: var(--ink); }
+.hotel-table tr:last-child td { border-bottom: none; }
+.hotel-table tr:nth-child(even) td { background: rgba(26,80,138,.03); }
+.check { color: #22a049; }
+.cross { color: #cc3333; }
+
+/* Bullet list */
+.item-list {
+  margin-top: .6rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.item-list li {
+  font-size: .8rem;
+  color: var(--stone-dk);
+  line-height: 1.5;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.item-list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.item-list li strong { color: var(--ink); }
+.item-list li a { color: var(--ocean); }
+
+/* Free/extra badges */
+.free-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .15rem .45rem;
+  border-radius: 3px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: rgba(34,160,73,.12);
+  color: #1a7a35;
+}
+.extra-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .15rem .45rem;
+  border-radius: 3px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: rgba(232,93,4,.12);
+  color: var(--orange);
+}
+
+/* Transit info box */
+.transit-box {
+  margin-top: .6rem;
+  padding: .75rem 1rem;
+  background: rgba(26,80,138,.06);
+  border-radius: 8px;
+  border: 1px solid rgba(26,80,138,.12);
+}
+.transit-box .transit-title {
+  font-family: 'DM Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  font-weight: 500;
+  margin-bottom: .4rem;
+}
+.transit-box .card-text { font-size: .78rem; }
+
+/* MX activities grid */
+.activities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  margin-top: .6rem;
+}
+.activity-item {
+  padding: .6rem .8rem;
+  background: rgba(26,80,138,.04);
+  border-radius: 7px;
+  border: 1px solid rgba(26,80,138,.1);
+}
+.activity-item .ai-icon { font-size: 1.1rem; margin-bottom: .2rem; }
+.activity-item .ai-title {
+  font-family: 'Cinzel', serif;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--midnight);
+  margin-bottom: .2rem;
+}
+.activity-item .ai-text { font-size: .72rem; color: var(--stone-dk); line-height: 1.5; }
+
+/* Halloween activities */
+.halloween-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .45rem;
+  margin-top: .6rem;
+}
+.hact {
+  padding: .55rem .75rem;
+  background: rgba(232,93,4,.06);
+  border-radius: 7px;
+  border: 1px solid rgba(232,93,4,.15);
+  font-size: .75rem;
+  color: #6b3010;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* Divider */
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.2rem 0;
+  font-family: 'DM Mono', monospace;
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.section-rule::before, .section-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(26,80,138,.15);
+}
+
+/* Accommodation band */
+.accom {
+  margin-top: 2rem;
+  background: var(--midnight);
+  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.accom-icon { font-size: 1.7rem; flex-shrink: 0; }
+.accom-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .15rem;
+}
+.accom-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+.accom-detail { font-size: .72rem; color: rgba(255,255,255,.5); margin-top: .15rem; }
+
+/* Ship band */
+.ship-band {
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #0c1631 0%, #1a3a8f 100%);
+  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(240,192,64,.2);
+}
+
+/* Footer */
+footer {
+  margin-top: 5rem;
+  padding: 3rem 5vw;
+  background: var(--midnight);
+  color: var(--mist);
+  text-align: center;
+  border-top: 1px solid rgba(240,192,64,.15);
+}
+footer h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--gold-lt);
+  margin-bottom: .45rem;
+}
+footer p { font-size: .78rem; opacity: .45; letter-spacing: .08em; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 580px) {
+  .day-header { flex-direction: column; gap: .5rem; }
+  .day-badge { width: 52px; height: 52px; }
+  .activities-grid, .halloween-grid { grid-template-columns: 1fr; }
+  .hotel-table { font-size: .72rem; }
+  .accom, .ship-band { flex-direction: column; align-items: flex-start; gap: .5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="stars"></div>
+
+  <!-- Moon -->
+  <div class="moon"></div>
+
+  <!-- Ship SVG silhouette -->
+  <div class="ship-wrap">
+    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Hull -->
+      <path d="M60 140 Q70 160 120 165 L360 165 Q410 160 420 140 Z" fill="#0a1628"/>
+      <path d="M60 140 L80 130 L400 130 L420 140 Z" fill="#0f2045"/>
+      <path d="M80 130 L90 115 L390 115 L400 130 Z" fill="#152354"/>
+      <!-- Hull stripe gold -->
+      <rect x="80" y="127" width="320" height="3" fill="rgba(240,192,64,.5)" rx="1"/>
+      <!-- Deck -->
+      <rect x="100" y="95" width="280" height="20" fill="#1a3a8f" rx="2"/>
+      <!-- Mickey funnels / stacks -->
+      <rect x="155" y="40" width="22" height="58" fill="#f0c040" rx="4"/>
+      <rect x="303" y="40" width="22" height="58" fill="#f0c040" rx="4"/>
+      <rect x="158" y="36" width="16" height="8" fill="#0c1631" rx="2"/>
+      <rect x="306" y="36" width="16" height="8" fill="#0c1631" rx="2"/>
+      <!-- Mickey ear circles on funnels -->
+      <circle cx="166" cy="32" r="10" fill="#f0c040"/>
+      <circle cx="156" cy="26" r="7" fill="#f0c040"/>
+      <circle cx="176" cy="26" r="7" fill="#f0c040"/>
+      <circle cx="314" cy="32" r="10" fill="#f0c040"/>
+      <circle cx="304" cy="26" r="7" fill="#f0c040"/>
+      <circle cx="324" cy="26" r="7" fill="#f0c040"/>
+      <!-- Superstructure -->
+      <rect x="130" y="58" width="220" height="37" fill="#0f2045" rx="3"/>
+      <!-- Windows on bridge -->
+      <rect x="140" y="64" width="12" height="8" fill="rgba(240,192,64,.5)" rx="1"/>
+      <rect x="158" y="64" width="12" height="8" fill="rgba(240,192,64,.4)" rx="1"/>
+      <rect x="176" y="64" width="12" height="8" fill="rgba(240,192,64,.5)" rx="1"/>
+      <rect x="234" y="62" width="14" height="10" fill="rgba(240,192,64,.6)" rx="1"/>
+      <rect x="254" y="62" width="14" height="10" fill="rgba(240,192,64,.5)" rx="1"/>
+      <rect x="308" y="64" width="12" height="8" fill="rgba(240,192,64,.4)" rx="1"/>
+      <rect x="326" y="64" width="12" height="8" fill="rgba(240,192,64,.5)" rx="1"/>
+      <!-- Pumpkin on deck (Halloween!) -->
+      <ellipse cx="220" cy="109" rx="10" ry="8" fill="var(--orange)"/>
+      <rect x="218" y="101" width="4" height="4" fill="#2a5a20" rx="1"/>
+      <path d="M213 107 l3 -4 l4 5 l4 -5 l3 4" fill="none" stroke="#0a1628" stroke-width="1.5"/>
+      <ellipse cx="260" cy="109" rx="10" ry="8" fill="var(--orange)"/>
+      <rect x="258" y="101" width="4" height="4" fill="#2a5a20" rx="1"/>
+      <path d="M253 107 l3 -4 l4 5 l4 -5 l3 4" fill="none" stroke="#0a1628" stroke-width="1.5"/>
+      <!-- Disney flags -->
+      <line x1="166" y1="19" x2="166" y2="2" stroke="var(--gold)" stroke-width="1"/>
+      <polygon points="166,2 180,6 166,10" fill="var(--gold)"/>
+      <line x1="314" y1="19" x2="314" y2="2" stroke="var(--gold)" stroke-width="1"/>
+      <polygon points="314,2 328,6 314,10" fill="var(--orange)"/>
+      <!-- Water splash under hull -->
+      <path d="M55 165 Q80 155 110 165 Q140 175 170 165 Q200 155 230 165 Q260 175 290 165 Q320 155 350 165 Q380 175 410 165 Q435 155 450 165" fill="none" stroke="rgba(126,200,227,.4)" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <!-- Ocean -->
+  <div class="ocean-bg"></div>
+  <div class="waves-svg">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path d="M0,30 C120,10 240,50 360,30 C480,10 600,50 720,30 C840,10 960,50 1080,30 C1200,10 1320,50 1440,30 L1440,60 L0,60 Z"
+        fill="#0a2a5e" opacity="0.7">
+        <animate attributeName="d"
+          dur="6s" repeatCount="indefinite"
+          values="
+            M0,30 C120,10 240,50 360,30 C480,10 600,50 720,30 C840,10 960,50 1080,30 C1200,10 1320,50 1440,30 L1440,60 L0,60 Z;
+            M0,40 C120,20 240,60 360,40 C480,20 600,60 720,40 C840,20 960,60 1080,40 C1200,20 1320,60 1440,40 L1440,60 L0,60 Z;
+            M0,30 C120,10 240,50 360,30 C480,10 600,50 720,30 C840,10 960,50 1080,30 C1200,10 1320,50 1440,30 L1440,60 L0,60 Z"
+        />
+      </path>
+      <path d="M0,45 C180,25 360,65 540,45 C720,25 900,65 1080,45 C1260,25 1440,45 1440,45 L1440,60 L0,60 Z"
+        fill="#0d3d7a" opacity="0.5">
+        <animate attributeName="d"
+          dur="9s" repeatCount="indefinite"
+          values="
+            M0,45 C180,25 360,65 540,45 C720,25 900,65 1080,45 C1260,25 1440,45 1440,45 L1440,60 L0,60 Z;
+            M0,35 C180,55 360,15 540,35 C720,55 900,15 1080,35 C1260,55 1440,35 1440,35 L1440,60 L0,60 Z;
+            M0,45 C180,25 360,65 540,45 C720,25 900,65 1080,45 C1260,25 1440,45 1440,45 L1440,60 L0,60 Z"
+        />
+      </path>
+    </svg>
+  </div>
+
+  <!-- Hero text -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ Family Adventure · October 2026 ✦</p>
+    <h1 class="hero-title">
+      Disney Magic
+      <span>Mexican Riviera</span>
+    </h1>
+    <p class="hero-sub">October 8–12, 2026 &nbsp;·&nbsp; 5 Days &nbsp;·&nbsp; San Diego + Ensenada + 🎃 Halloween on the High Seas</p>
+    <div class="hero-pills">
+      <span class="pill">✈ SJC → SAN → SJC</span>
+      <span class="pill">🚢 Disney Magic · 3-Night Cruise</span>
+      <span class="pill">🏨 SpringHill Suites Bayfront</span>
+      <span class="pill">🎃 Halloween on the High Seas</span>
+      <span class="pill">🇲🇽 Ensenada, Mexico</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DAY NAV ═══ -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">Thu 10/08 · San Diego</a>
+  <a href="#day2">Fri 10/09 · Board Ship</a>
+  <a href="#day3">Sat 10/10 · Ensenada</a>
+  <a href="#day4">Sun 10/11 · Halloween</a>
+  <a href="#day5">Mon 10/12 · Fly Home</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════
+     DAY 1 · THURSDAY 10/08
+═══════════════════════════════════ -->
+<section class="day-section visible" id="day1">
+  <div class="day-header">
+    <div class="day-badge">
+      <span class="day-num">1</span>
+      <span class="day-label">Thu</span>
+    </div>
+    <div class="day-meta">
+      <div class="day-date">Thursday · October 8</div>
+      <h2 class="day-title">Flight to San Diego &amp; Harbor Afternoon</h2>
+      <div class="day-tags">
+        <span class="tag t-fly">✈ SJC→SAN</span>
+        <span class="tag t-walk">🚶 Embarcadero</span>
+        <span class="tag t-walk">⚓ Seaport Village</span>
+        <span class="tag t-walk">🛝 Children's Park</span>
+        <span class="tag t-food">🌮 Puesto Dinner</span>
+        <span class="tag t-hotel">🏨 SpringHill Suites</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="ev"><div class="ev-time">9:00 AM</div><div class="ev-text">Wake up / get ready</div></div>
+    <div class="ev"><div class="ev-time">10:00 AM</div><div class="ev-text">Pack car</div></div>
+    <div class="ev"><div class="ev-time">10:15 AM</div><div class="ev-text">Drive 15 min to SJC</div></div>
+    <div class="ev"><div class="ev-time">10:45 AM</div><div class="ev-text">Check bags / pass security <span class="conf-inline">· Conf: AXVJT5</span></div></div>
+    <div class="ev"><div class="ev-time">11:30 AM</div><div class="ev-text">Eat lunch at SJC</div></div>
+    <div class="ev"><div class="ev-time">12:25 PM</div><div class="ev-text">Board</div></div>
+    <div class="ev hl">
+      <div class="ev-time">12:55 PM</div>
+      <div class="ev-text">
+        ✈ Fly 1h 20m <strong>SJC → SAN</strong> · Kids nap
+        <div class="flight-detail"><span class="fd-num">WN3840</span><span>·</span><span class="fd-conf">Conf: AXVJT5</span></div>
+      </div>
+    </div>
+    <div class="ev"><div class="ev-time">2:15 PM</div><div class="ev-text">Arrive SAN</div></div>
+    <div class="ev"><div class="ev-time">2:30 PM</div><div class="ev-text">Pick up checked bags</div></div>
+    <div class="ev"><div class="ev-time">2:45 PM</div><div class="ev-text">Walk to the bus/shuttle area</div></div>
+
+    <div class="ev hl">
+      <div class="ev-time">3:02 PM</div>
+      <div class="ev-text">🚌 Take <strong>MTS Route 992</strong> — 20 min, 7 stops → N Harbor Dr &amp; 1140 (B St. Cruise Ship Terminal)</div>
+      <div class="card ocean-card">
+        <div class="card-body">
+          <div class="card-title">🚌 MTS Route 992 · Airport/Downtown Shuttle</div>
+          <div class="card-text">
+            Departs every 15 min at 2:32p / 2:47p / 3:02p / 3:17p / 3:32p / etc.<br>
+            Tap a contactless credit card to pay · <strong>$2.50 per adult</strong> · Free for 5 &amp; under
+          </div>
+          <div class="ratings" style="margin-top:.55rem">
+            <a class="rb rb-web" href="https://www.sdmts.com/getting-around/departures-and-schedules/schedules/992" target="_blank">📅 992 Schedule ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">3:30 PM</div>
+      <div class="ev-text">Check in to <strong>SpringHill Suites San Diego Downtown/Bayfront</strong></div>
+      <div class="card gold-card">
+        <div class="card-body">
+          <div class="card-title">🏨 SpringHill Suites San Diego Downtown/Bayfront</div>
+          <div class="card-text">
+            900 Bayfront Ct, San Diego, CA 92101<br>
+            <strong>Reservation #:</strong> 70011179 &nbsp;·&nbsp; <strong>Check-in:</strong> 3:00 PM &nbsp;·&nbsp; <strong>Check-out:</strong> 11:00 AM<br>
+            Free hot breakfast (6:30–9a) · 5-min walk to cruise terminal
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">3:45 PM</div>
+      <div class="ev-text">🚶 Enjoy a <strong>16-min walk down the Embarcadero</strong> to Seaport Village · Bring the stroller</div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/SpringHill+Suites+by+Marriott+San+Diego+Downtown%2FBayfront,+900+Bayfront+Ct,+San+Diego,+CA+92101/Seaport+Village,+849+W+Harbor+Dr,+San+Diego,+CA+92101/@32.7130636,-117.1769271,16z/data=!4m19!4m18!1m10!1m1!1s0x80d954ab637b9215:0xee87ef9f58c16a7d!2m2!1d-117.1719436!2d32.7170448!3m4!1m2!1d-117.1729848!2d32.7115838!3s0x80d954aaaa26099d:0x8f883550b32e7e42!1m5!1m1!1s0x80d95354fd94ac8f:0x3e4c5c4163d7af44!2m2!1d-117.1709366!2d32.7090645!3e2" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions · 16 min walk
+      </a>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">4:10 PM</div>
+      <div class="ev-text">⚓ Enjoy <strong>Seaport Village</strong></div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">⚓ Seaport Village</div>
+          <div class="ratings">
+            <a class="rb rb-g" href="https://maps.app.goo.gl/4ZrMUKVghguqifK38" target="_blank">⭐ 4.6 · Google (31,950)</a>
+          </div>
+          <div class="quote">"Seaport Village was one of my favorite stops in San Diego. The waterfront views are beautiful with plenty of places to sit, relax, and enjoy the harbor. The atmosphere is lively but not overwhelming — perfect for a leisurely stroll. Unique shops, great dining, and stunning views of the San Diego Bay skyline, especially around sunset."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">4:45 PM</div>
+      <div class="ev-text">Walk 9 min to <strong>San Diego Children's Park</strong></div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/32.7088338,-117.168695/San+Diego+Children%E2%80%99s+Park,+326+W+Harbor+Dr,+San+Diego,+CA+92101/@32.7086166,-117.1666508,17.03z/data=!4m9!4m8!1m0!1m5!1m1!1s0x80d9535726bbfb77:0x32b78348cbb4a1ae!2m2!1d-117.1642866!2d32.7099286!3e2" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions · 9 min walk
+      </a>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:00 PM</div>
+      <div class="ev-text">🛝 Play at <strong>San Diego Children's Park</strong></div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🛝 San Diego Children's Park</div>
+          <div class="ratings">
+            <a class="rb rb-g" href="https://maps.app.goo.gl/Tr88bqNJbCohs6k56" target="_blank">⭐ 4.3 · Google (576)</a>
+          </div>
+          <div class="quote">"The park is amazing and my daughter had a blast. Much cleaner than expected and there's a guard patrolling the area. A great spot to bring your little one. We went around 9:30am and there was a good number of kids running around. Recommend going!"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">5:20 PM</div>
+      <div class="ev-text">Walk 10 min to <strong>Puesto</strong></div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/San+Diego+Children%E2%80%99s+Park,+326+W+Harbor+Dr,+San+Diego,+CA+92101/Puesto+at+the+Headquarters+%7C+Mexican,+789+W+Harbor+Dr+Unit+155,+San+Diego,+CA+92101/@32.7098805,-117.1699348,17z/data=!3m2!4b1!5s0x80d95355a5b73455:0x10e7e121569bebb2!4m14!4m13!1m5!1m1!1s0x80d9535726bbfb77:0x32b78348cbb4a1ae!2m2!1d-117.1642866!2d32.7099286!1m5!1m1!1s0x80d95355bf428f9d:0xf235c569df48d5e6!2m2!1d-117.1702749!2d32.7106452!3e2" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions · 10 min walk
+      </a>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:30 PM</div>
+      <div class="ev-text">🌮 Dinner at <strong>Puesto</strong> <em style="font-size:.82em;color:var(--stone)">(or Cheesecake Factory or a million other options)</em></div>
+      <div class="card disney-card">
+        <div class="card-body">
+          <div class="card-title">🌮 Puesto at the Headquarters</div>
+          <div class="card-text">789 W Harbor Dr Unit 155, San Diego</div>
+          <div class="ratings">
+            <a class="rb rb-g" href="https://maps.app.goo.gl/6zyeqrKhnQ7Cug2b7" target="_blank">⭐ 4.5 · Google (4,431)</a>
+          </div>
+          <div class="quote orange-quote">"We had an amazing experience at Puesto! The Cali Bowl and filet mignon was absolute perfection — honestly one of my favorite meals from our weekend in San Diego. <strong>We came with our 3- and 4-year-old</strong>, and our server was incredibly attentive. They brought out chips and salsa right away and even took our little one's order while we were still looking at the menu. Fantastic food, great drinks, and truly thoughtful service. Highly recommend! 🍽️✨"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">6:30 PM</div>
+      <div class="ev-text">Walk 12 min back to SpringHill Suites</div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/Puesto+at+the+Headquarters+%7C+Mexican,+789+W+Harbor+Dr+Unit+155,+San+Diego,+CA+92101/SpringHill+Suites+by+Marriott+San+Diego+Downtown%2FBayfront,+900+Bayfront+Ct,+San+Diego,+CA+92101/@32.7136249,-117.1717365,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x80d95355bf428f9d:0xf235c569df48d5e6!2m2!1d-117.1702749!2d32.7106452!1m5!1m1!1s0x80d954ab637b9215:0xee87ef9f58c16a7d!2m2!1d-117.1719436!2d32.7170448!3e2" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions · 12 min walk
+      </a>
+    </div>
+
+    <div class="ev"><div class="ev-time">6:45 PM</div><div class="ev-text">Play in the hotel room</div></div>
+    <div class="ev"><div class="ev-time">8:00 PM</div><div class="ev-text">Wind down</div></div>
+    <div class="ev"><div class="ev-time">9:30 PM</div><div class="ev-text">Sleep</div></div>
+
+  </div>
+
+  <div class="accom">
+    <div class="accom-icon">🏨</div>
+    <div>
+      <div class="accom-lbl">Tonight's Stay</div>
+      <div class="accom-name">SpringHill Suites San Diego Downtown/Bayfront</div>
+      <div class="accom-detail">900 Bayfront Ct, San Diego, CA 92101 · Check-out 11am tomorrow · Free breakfast 6:30–9a</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     DAY 2 · FRIDAY 10/09
+═══════════════════════════════════ -->
+<section class="day-section" id="day2">
+  <div class="day-header">
+    <div class="day-badge">
+      <span class="day-num">2</span>
+      <span class="day-label">Fri</span>
+    </div>
+    <div class="day-meta">
+      <div class="day-date">Friday · October 9</div>
+      <h2 class="day-title">Hotel Breakfast &amp; Board Disney Magic</h2>
+      <div class="day-tags">
+        <span class="tag t-hotel">🥐 Free Breakfast</span>
+        <span class="tag t-ship">🚢 Board Disney Magic</span>
+        <span class="tag t-disney">🏰 Sail Away Party</span>
+        <span class="tag t-food">🍽 Rotational Dining</span>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+
+    <div class="ev"><div class="ev-time">8:00 AM</div><div class="ev-text">Wake up / get ready</div></div>
+
+    <div class="ev hl">
+      <div class="ev-time">8:30 AM</div>
+      <div class="ev-text">🥐 Eat <strong>free hotel breakfast</strong></div>
+      <div class="card gold-card">
+        <div class="card-body">
+          <div class="card-title">🥐 SpringHill Suites Free Hot Breakfast</div>
+          <div class="card-text">Open 6:30a–9a Mon–Fri · Traditional favorites and healthy options</div>
+          <div class="quote gold-quote">"Fuel your morning with our free hot breakfast, offering traditional favorites and healthy options for travelers seeking balance during their San Diego stay."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev"><div class="ev-time">9:30 AM</div><div class="ev-text">Hang in the hotel or explore · Check-out is 11a</div></div>
+
+    <div class="ev hl">
+      <div class="ev-time">10:45 AM</div>
+      <div class="ev-text">🚶 Walk 5 min to the cruise terminal</div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/SpringHill+Suites+by+Marriott+San+Diego+Downtown%2FBayfront,+900+Bayfront+Ct,+San+Diego,+CA+92101/Port+of+San+Diego+Cruise+Ship+Terminal,+1140+N+Harbor+Dr,+San+Diego,+CA+92101/@32.7174228,-117.1727451,17.4z/data=!4m14!4m13!1m5!1m1!1s0x80d954ab637b9215:0xee87ef9f58c16a7d!2m2!1d-117.1719436!2d32.7170448!1m5!1m1!1s0x80d954aca9ecb9c9:0x6fed643b4482ecd5!2m2!1d-117.174372!2d32.7175108!3e2" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions · 5 min walk
+      </a>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">11:00 AM</div>
+      <div class="ev-text">Drop off luggage you don't need until ~1:30p with porters</div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">Port Arrival Time</div>
+      <div class="ev-text">✅ Complete check-in &amp; security</div>
+      <div class="card ocean-card">
+        <div class="card-body">
+          <div class="card-title">📋 Check-In Notes</div>
+          <div class="card-text">
+            Exact "Port Arrival Time" will be signed up for on <strong>September 8</strong> (30 days before leaving).
+          </div>
+          <ul class="item-list">
+            <li>"You can board, depending on your priority, as early as 11am. I've never gotten a port time that was after noon."</li>
+            <li>"During your designated Port Arrival Time, representatives will verify your citizenship documentation and complete your check in."</li>
+          </ul>
+          <div class="ratings" style="margin-top:.55rem">
+            <a class="rb rb-web" href="https://disneycruise.disney.go.com/faq/preparing-for-cruise/boarding-time/" target="_blank">🏰 disney.com boarding FAQ ↗</a>
+            <a class="rb rb-web" href="https://disneycruise.disney.go.com/cruises-destinations/list/DM1753/3-Night-Halloween-on-the-High-Seas-Baja-Cruise-from-San-Diego/2026-10-09-Disney-Magic" target="_blank">🚢 View Cruise ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">Board Time</div>
+      <div class="ev-text">🚢 <strong>Board Disney Magic</strong> when our boarding group is called!</div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">12:30 PM</div>
+      <div class="ev-text">🍽 Eat lunch anywhere: <strong>Cabanas buffet</strong> / Rapunzel's Table / Lumiere's</div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">1:30 PM</div>
+      <div class="ev-text">Check out the room / Kids club open houses / whatever we want! <em style="font-size:.82em;color:var(--stone)">(usually until 5p)</em></div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time"></div>
+      <div class="ev-text">🛏 <strong>Room 1072 · Deck 1</strong></div>
+      <div class="card gold-card">
+        <div class="card-body">
+          <div class="card-title">🛏 Stateroom 1072 — Deck 1, Midship</div>
+          <div class="card-text">
+            <strong>214 sq ft</strong> &nbsp;·&nbsp; Queen bed + single sleeper sofa + pull-down bed &nbsp;·&nbsp; 2 small porthole windows
+          </div>
+          <div class="section-rule" style="margin:.65rem 0 .5rem">What guests say about Deck 1 on the Magic</div>
+          <ul class="item-list">
+            <li>"We had an oceanview room midship on Deck 1 and we loved it! It was super quiet, and even being by the stairs wasn't bad because there's no 'through traffic' on the stairs. Also didn't feel much of the ship rocking at all."</li>
+            <li>"We were midship and had no issues! Fairly close to the elevator banks but we didn't hear a ton of noise. My husband and son are both prone to motion sickness but my son said he only felt very slight motion sickness at times, not enough to actually get sick."</li>
+            <li>"Came here to say the same thing. We liked it so much we have booked the same stateroom (1040) for our next Magic outing!"</li>
+            <li>"I did deck 1 on the Wonder and had no complaints! Very quiet room and nice central location."</li>
+            <li>"We had a great time and I was completely happy on deck 1. It was super quiet, and the elevators were always easy to catch. No issues with motion/seasickness. Port days were extra convenient — entering back into the ship was on deck 1."</li>
+            <li>"We were on Magic's Deck 1 towards the front of the ship. It was quiet and we hardly felt any rocking motion. I loved how close we were to exit for port excursions. Relax and enjoy!!"</li>
+            <li>"Also did two deck 1 cruises on the Magic last year and loved it. Stable, quiet, not a lot of hallway traffic. Go for it!"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">3:30 PM</div>
+      <div class="ev-text">⚓ <strong>Mandatory safety drill</strong></div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">3:45 PM</div>
+      <div class="ev-text">🎉 <strong>Sail Away Party!</strong></div>
+      <div class="card disney-card">
+        <div class="card-body">
+          <div class="card-title">🎉 Mickey's Sail-A-Wave Party!</div>
+          <div class="card-text">"Wave goodbye to work and school and start your vacation in magical style—dancing with some of your favorite Disney Characters." The new, high-energy Mickey's Sail-A-Wave Party! features the latest dance mixes and current favorite music, 2 great hosts and a terrific DJ. The Cruise Director leads the countdown to the horn blast—and your ship pulls away from the port!</div>
+          <div class="ratings" style="margin-top:.55rem">
+            <a class="rb rb-web" href="https://disneycruise.disney.go.com/onboard-activities/mickeys-sail-a-wave-deck-party/" target="_blank">🏰 Details ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">4:30 PM</div>
+      <div class="ev-text">📱 Make a plan based on the schedules in the <strong>Disney Cruise Line Navigator app</strong></div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">📱 Onboard Activities to Choose From</div>
+          <div class="card-text" style="margin-bottom:.5rem">Access the specific itinerary and event schedule once onboard &amp; connected to ship Wi-Fi.</div>
+          <div class="section-rule">Kid-Focused</div>
+          <ul class="item-list">
+            <li><strong>Kids Club:</strong> it's a small world nursery (Cami) + Oceaneer Club (Flo, ages 3–10) · No reservations required · Drop off/pick up anytime</li>
+            <li>The Legend of the Pumpkin Tree storytelling</li>
+            <li>Trick-or-treating &amp; Arts &amp; Crafts</li>
+            <li>Character Meet and Greets</li>
+            <li>Mickey's Mouse-querade Party</li>
+          </ul>
+          <div class="section-rule">Shows &amp; Entertainment</div>
+          <ul class="item-list">
+            <li>Broadway-style shows: <strong>Tangled the Musical</strong> · Twice Charmed (Cinderella twist) · Disney Dreams Enchanted Classic</li>
+          </ul>
+          <div class="section-rule">Outdoor &amp; Pools</div>
+          <ul class="item-list">
+            <li><strong>Pools:</strong> Twist 'n Spout slide (>38" kids) · Aqualab water play · Goofy's family pool</li>
+            <li><strong>Wide World of Sports Deck:</strong> basketball courts, ping-pong tables</li>
+          </ul>
+          <div class="section-rule">Food &amp; Treats</div>
+          <ul class="item-list">
+            <li>Cabanas buffet · Duck-in Diner · Pinocchio's Pizzeria · Eye Scream Treats · Frozone Treats</li>
+          </ul>
+          <div class="section-rule">Extra Cost</div>
+          <ul class="item-list">
+            <li><span class="extra-badge">$ Extra</span> Bibbidi Bobbidi Boutique · Royal Court Royal Tea</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:45 PM</div>
+      <div class="ev-text">🍽 Dinner at our assigned <strong>Rotational Dining restaurant</strong></div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🍽 Rotational Dining Rotation</div>
+          <div class="card-text">You'll rotate through all three restaurants across the 3 dinner nights — tonight, Saturday, and Sunday:</div>
+          <ul class="item-list" style="margin-top:.5rem">
+            <li><strong>Animator's Palate</strong> — stunning animated decor, whimsical Disney art comes to life</li>
+            <li><strong>Rapunzel's Royal Table</strong> — medieval festive hall inspired by Tangled</li>
+            <li><strong>Lumiere's</strong> — elegant French-inspired dining, Beauty and the Beast theme</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev"><div class="ev-time">7:00 PM</div><div class="ev-text">Whatever we planned from the Navigator app</div></div>
+
+    <div class="ev hl">
+      <div class="ev-time">8:00 PM</div>
+      <div class="ev-text">Wind down / 🌙 Order room service breakfast card if desired</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">🌙 Room Service Breakfast</div>
+          <div class="card-text">Fill out the Room Service Request Card in your stateroom and leave it outside your door <strong>prior to 3:00 AM</strong> on the morning of the scheduled breakfast. Many items included in the price of the cruise.</div>
+          <div class="ratings" style="margin-top:.4rem">
+            <a class="rb rb-web" href="https://disneycruise.disney.go.com/onboard-activities/room-service/" target="_blank">🏰 Room Service Details ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev"><div class="ev-time">9:30 PM</div><div class="ev-text">Sleep</div></div>
+  </div>
+
+  <div class="ship-band">
+    <div style="font-size:1.8rem">🚢</div>
+    <div>
+      <div class="accom-lbl">Aboard Tonight</div>
+      <div class="accom-name">Disney Magic · Mexican Riviera</div>
+      <div class="accom-detail">3-Night Halloween on the High Seas Baja Cruise · Departed San Diego</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     DAY 3 · SATURDAY 10/10
+═══════════════════════════════════ -->
+<section class="day-section" id="day3">
+  <div class="day-header">
+    <div class="day-badge">
+      <span class="day-num">3</span>
+      <span class="day-label">Sat</span>
+    </div>
+    <div class="day-meta">
+      <div class="day-date">Saturday · October 10</div>
+      <h2 class="day-title">Ensenada, Mexico Day</h2>
+      <div class="day-tags">
+        <span class="tag t-mx">🇲🇽 Ensenada Port</span>
+        <span class="tag t-walk">🏖 Beaches</span>
+        <span class="tag t-walk">🛍 Shopping</span>
+        <span class="tag t-walk">🏛 Culture</span>
+        <span class="tag t-food">🍽 Rotational Dining</span>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+
+    <div class="ev hl">
+      <div class="ev-time">8:00 AM</div>
+      <div class="ev-text">🇲🇽 <strong>Arrives at Ensenada, MX</strong></div>
+      <div class="card disney-card">
+        <div class="card-body">
+          <div class="card-title">🇲🇽 Ensenada — Whatever We Feel Like!</div>
+          <div class="card-text" style="margin-bottom:.55rem">Walk 10 min from cruise ship to downtown Ensenada · <a href="https://disneycruise.disney.go.com/port-adventures/mexico/list/ensenada-mexico/" target="_blank">29 paid excursions available ↗</a></div>
+
+          <div class="activities-grid">
+            <div class="activity-item">
+              <div class="ai-icon">🏖</div>
+              <div class="ai-title">Beaches</div>
+              <div class="ai-text">San Miguel Beach, El Faro Beach, and Estero Beach — all family-friendly swimming &amp; sun</div>
+            </div>
+            <div class="activity-item">
+              <div class="ai-icon">🛍</div>
+              <div class="ai-title">Shopping</div>
+              <div class="ai-text">Avenida Lopez Mateos &amp; Boulevar Costero — 8 blocks of boutiques, bazaars, galleries &amp; roadside vendors. Also La Primera with restaurants &amp; Hussong's Cantina</div>
+            </div>
+            <div class="activity-item">
+              <div class="ai-icon">🏛</div>
+              <div class="ai-title">Culture</div>
+              <div class="ai-text">Museo De Historia · Estero Beach Museum · 18th-century Dominican missions: San Miguel Arcangel &amp; Santo Tomas De Aquino</div>
+            </div>
+            <div class="activity-item">
+              <div class="ai-icon">🗿</div>
+              <div class="ai-title">Three Heads Park</div>
+              <div class="ai-text">Beautifully landscaped park with giant golden busts of Hidalgo, Juarez &amp; Carranza — Mexico's beloved heroes</div>
+            </div>
+          </div>
+
+          <div class="quote" style="margin-top:.75rem">💡 Less crowded ship time while most guests are off — great opportunity to enjoy the pools &amp; onboard activities without the usual crowds!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:00 PM</div>
+      <div class="ev-text">⚠️ <strong>Deadline to be back on the ship</strong></div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:45 PM</div>
+      <div class="ev-text">🍽 Dinner at our assigned <strong>Rotational Dining restaurant</strong></div>
+    </div>
+
+    <div class="ev"><div class="ev-time">7:00 PM</div><div class="ev-text">Whatever we planned</div></div>
+
+    <div class="ev">
+      <div class="ev-time">8:00 PM</div>
+      <div class="ev-text">Wind down / 🌙 Fill out room service breakfast card if desired</div>
+    </div>
+
+    <div class="ev"><div class="ev-time">9:30 PM</div><div class="ev-text">Sleep</div></div>
+  </div>
+
+  <div class="ship-band">
+    <div style="font-size:1.8rem">🇲🇽</div>
+    <div>
+      <div class="accom-lbl">Aboard Tonight</div>
+      <div class="accom-name">Disney Magic · Back at Sea</div>
+      <div class="accom-detail">Departing Ensenada · Sailing north overnight</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     DAY 4 · SUNDAY 10/11
+═══════════════════════════════════ -->
+<section class="day-section" id="day4">
+  <div class="day-header">
+    <div class="day-badge halloween">
+      <span class="day-num">4</span>
+      <span class="day-label">Sun</span>
+    </div>
+    <div class="day-meta">
+      <div class="day-date">Sunday · October 11</div>
+      <h2 class="day-title">🎃 Halloween on the High Seas</h2>
+      <div class="day-tags">
+        <span class="tag t-halloween">🎃 Halloween Party</span>
+        <span class="tag t-halloween">🧟 Ghostly Characters</span>
+        <span class="tag t-halloween">🍬 Trick-or-Treat</span>
+        <span class="tag t-disney">💃 Mouse-querade Dance</span>
+        <span class="tag t-food">🍽 Rotational Dining</span>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+
+    <div class="ev hl">
+      <div class="ev-time">All Day</div>
+      <div class="ev-text">🎃 <strong>Halloween on the High Seas</strong> — whatever we feel like!</div>
+      <div class="card" style="border-left:3px solid var(--orange)">
+        <div class="card-body">
+          <div class="card-title" style="color:var(--orange)">🎃 Halloween on the High Seas</div>
+          <div class="card-text" style="margin-bottom:.55rem">Today's special Halloween magic — all included in our cruise fare:</div>
+          <div class="halloween-grid">
+            <div class="hact">💃 Mickey's Mouse-querade Dance Party</div>
+            <div class="hact">👻 Ghostly Character Meet &amp; Greets</div>
+            <div class="hact">🎨 Halloween Crafts &amp; Activities</div>
+            <div class="hact">🍬 Trick-or-Treating on the Ship</div>
+            <div class="hact">🍂 Legend of the Pumpkin Tree</div>
+            <div class="hact">🎃 Halloween-Themed Desserts &amp; Treats</div>
+          </div>
+          <div class="ratings" style="margin-top:.6rem">
+            <a class="rb rb-web" href="https://disneycruise.disney.go.com/onboard-activities/halloween-on-the-high-seas/" target="_blank">🏰 Halloween on the High Seas ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">All Day</div>
+      <div class="ev-text">Full Activity Menu</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">What's Included &amp; What Costs Extra</div>
+
+          <div class="section-rule">Included in cruise fare</div>
+          <ul class="item-list">
+            <li><span class="free-badge">✓ Free</span> <strong>All onboard activities</strong> — Kids Club, pools, deck parties, shows, crafts</li>
+            <li><span class="free-badge">✓ Free</span> <strong>All food &amp; dessert</strong> including ice cream — except Palo (adult-exclusive specialty restaurant)</li>
+            <li><span class="free-badge">✓ Free</span> <strong>Drinks:</strong> Coffee / Tea / Soda (not "specialty" coffee)</li>
+            <li><span class="free-badge">✓ Free</span> <strong>24-hour room service</strong> — most items included</li>
+          </ul>
+
+          <div class="section-rule">Extra cost</div>
+          <ul class="item-list">
+            <li><span class="extra-badge">$ Extra</span> <strong>Bibbidi Bobbidi Boutique</strong></li>
+            <li><span class="extra-badge">$ Extra</span> <strong>Royal Court Royal Tea</strong></li>
+            <li><span class="extra-badge">$ Extra</span> <strong>Internet</strong></li>
+            <li><span class="extra-badge">$ Extra</span> Palo adult-exclusive specialty restaurant</li>
+            <li><span class="extra-badge">$ Extra</span> Some room service food &amp; drink items</li>
+          </ul>
+
+          <div class="section-rule">Kids Clubs (ages 3–10)</div>
+          <ul class="item-list">
+            <li><strong>It's a Small World Nursery</strong> — for Cami · <strong>Oceaneer Club</strong> — for Flo</li>
+            <li>No reservations required · Drop off and pick up at your convenience · Kids can easily spend most of their time here!</li>
+          </ul>
+
+          <div class="section-rule">Pools &amp; Outdoor</div>
+          <ul class="item-list">
+            <li><strong>Twist 'n Spout slide</strong> — for children >38" · <strong>Aqualab</strong> water play · <strong>Goofy's family pool</strong></li>
+            <li><strong>Wide World of Sports Deck:</strong> basketball courts, ping-pong tables</li>
+          </ul>
+
+          <div class="section-rule">Food Spots</div>
+          <ul class="item-list">
+            <li>Cabanas buffet · Duck-in Diner · Pinocchio's Pizzeria · Eye Scream Treats · Frozone Treats</li>
+          </ul>
+
+          <div class="section-rule">Shows</div>
+          <ul class="item-list">
+            <li>Tangled the Musical · Twice Charmed (Cinderella twist) · Disney Dreams Enchanted Classic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">Reference</div>
+      <div class="ev-text">🗺 <strong>Ship Deck Locations</strong></div>
+      <div class="card" style="border-left:3px solid var(--gold)">
+        <div class="card-body">
+          <div class="card-title">🗺 Disney Magic — Deck-by-Deck</div>
+          <table class="hotel-table" style="margin-top:.55rem">
+            <thead><tr><th>Deck</th><th>What's There</th></tr></thead>
+            <tbody>
+              <tr><td>Deck 1</td><td>Health Center, Tender Lobby · <strong>Our Room 1072</strong></td></tr>
+              <tr><td>Deck 2</td><td>Staterooms</td></tr>
+              <tr><td>Deck 3</td><td>Disney Lounges (Fathoms, Keys, Half Note, O'Gills Pub) · D Lounge · Sea Treasures · Guest Services · Port Adventures · Main Lobby · <strong>Lumiere's · Rapunzel's Royal Table</strong></td></tr>
+              <tr><td>Deck 4</td><td>Walt Disney Theatre · Preludes Bar · Mickey's Mainsail shop · White Caps Shop · <strong>Animator's Palate</strong></td></tr>
+              <tr><td>Deck 5</td><td>Staterooms · <strong>Oceaneer Lab · Oceaneer Club · It's a Small World Nursery</strong> · Buena Vista Theater</td></tr>
+              <tr><td>Decks 6–8</td><td>Staterooms</td></tr>
+              <tr><td>Deck 9</td><td>Senses Gym &amp; Spa · Pools: Quiet Cove (adult) · Goofy's Family Pool · Nephew's Splash Zone · FunnelVision · <strong>Cabanas buffet · Duck-In Diner · Eye Scream · Pinocchio's Pizzeria · Frozone Treats</strong> · Edge (teens)</td></tr>
+              <tr><td>Deck 10</td><td><strong>Wide World of Sports · Bibbidi Bobbidi Boutique</strong> · Concierge Lounge · AquaDunk · Twist n Spout entrance · Palo</td></tr>
+              <tr><td>Deck 11</td><td>Vibe (teen club)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">5:45 PM</div>
+      <div class="ev-text">🍽 Dinner at our assigned <strong>Rotational Dining restaurant</strong></div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">8:00 PM</div>
+      <div class="ev-text">Wind down / 🌙 Fill out room service breakfast card if desired (leave outside door before 3 AM)</div>
+    </div>
+
+    <div class="ev"><div class="ev-time">9:30 PM</div><div class="ev-text">Sleep</div></div>
+  </div>
+
+  <div class="ship-band" style="background:linear-gradient(135deg,#1a0a00,#3d1400);border-color:rgba(232,93,4,.3)">
+    <div style="font-size:1.8rem">🎃</div>
+    <div>
+      <div class="accom-lbl" style="color:var(--orange)">Aboard Tonight</div>
+      <div class="accom-name">Disney Magic · Sailing Back to San Diego</div>
+      <div class="accom-detail">Last night on the ship · Disembark tomorrow morning</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     DAY 5 · MONDAY 10/12
+═══════════════════════════════════ -->
+<section class="day-section" id="day5">
+  <div class="day-header">
+    <div class="day-badge">
+      <span class="day-num">5</span>
+      <span class="day-label">Mon</span>
+    </div>
+    <div class="day-meta">
+      <div class="day-date">Monday · October 12</div>
+      <h2 class="day-title">Disembark &amp; Flight Home</h2>
+      <div class="day-tags">
+        <span class="tag t-ship">⚓ Disembark</span>
+        <span class="tag t-walk">🚌 MTS 992</span>
+        <span class="tag t-food">🍽 Airport Lunch</span>
+        <span class="tag t-fly">✈ SAN→SJC</span>
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+
+    <div class="ev hl">
+      <div class="ev-time">8:00 AM</div>
+      <div class="ev-text">⚓ <strong>Disembark Disney Magic</strong></div>
+      <div class="card ocean-card">
+        <div class="card-body">
+          <div class="card-title">⚓ Disembarkation Notes</div>
+          <div class="card-text">The speediness of debarkation depends on how full the sailing is, but usually by 9:30 AM most Guests will have already gotten off the ship.</div>
+          <div class="ratings" style="margin-top:.4rem">
+            <a class="rb rb-web" href="https://plandisney.disney.go.com/question/disembarkation-day-time-need-leave-ship-604782/" target="_blank">🏰 Disembarkation Details ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev">
+      <div class="ev-time">9:30 AM</div>
+      <div class="ev-text">Walk to N Harbor Dr &amp; Broadway bus stop</div>
+    </div>
+
+    <div class="ev hl">
+      <div class="ev-time">9:41 / 9:56 AM</div>
+      <div class="ev-text">🚌 Take <strong>MTS Route 992</strong> — 10 min, 3 stops → Airport Terminal 1</div>
+      <div class="card ocean-card">
+        <div class="card-body">
+          <div class="card-title">🚌 MTS Route 992 · Return to Airport</div>
+          <div class="card-text">
+            Departs every 15 min at 9:41a / 9:56a / 10:11a / 10:26a / etc.<br>
+            Tap contactless credit card · <strong>$2.50 per adult</strong> · Free for 5 &amp; under
+          </div>
+          <div class="ratings" style="margin-top:.4rem">
+            <a class="rb rb-web" href="https://www.sdmts.com/getting-around/departures-and-schedules/schedules/992" target="_blank">📅 992 Schedule ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="ev"><div class="ev-time">10:30 AM</div><div class="ev-text">Check bags / pass security <span class="conf-inline">· Conf: AXVJT5</span></div></div>
+    <div class="ev"><div class="ev-time">11:15 AM</div><div class="ev-text">🍽 Eat lunch at SAN / buffer time</div></div>
+    <div class="ev"><div class="ev-time">12:00 PM</div><div class="ev-text">Board</div></div>
+    <div class="ev hl">
+      <div class="ev-time">12:30 PM</div>
+      <div class="ev-text">
+        ✈ Fly 1h 25m <strong>SAN → SJC</strong> · Kids nap
+        <div class="flight-detail"><span class="fd-num">WN4915</span><span>·</span><span class="fd-conf">Conf: AXVJT5</span></div>
+      </div>
+    </div>
+    <div class="ev"><div class="ev-time">1:55 PM</div><div class="ev-text">Arrive SJC</div></div>
+    <div class="ev"><div class="ev-time">2:15 PM</div><div class="ev-text">Pick up checked bags</div></div>
+
+    <div class="ev hl">
+      <div class="ev-time">2:30 PM</div>
+      <div class="ev-text">Drive 14 min back home to Mountain View!</div>
+      <a class="dir-btn" href="https://www.google.com/maps/dir/San+Jose+Mineta+International+Airport,+1701+Airport+Blvd+Ste+B-1130,+San+Jose,+CA+95110/464+Moorpark+Way,+Mountain+View,+CA+94041-2407,+USA/@37.3592472,-122.072767,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x808fcbc3fab3c59b:0xbcfa443f6df67e3e!2m2!1d-121.9285932!2d37.3635295!1m5!1m1!1s0x808fb720c3f8b06f:0xb9dc33a9c88da408!2m2!1d-122.065631!2d37.383991" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Directions Home · 14 min
+      </a>
+    </div>
+
+    <div class="ev"><div class="ev-time">2:45 PM</div><div class="ev-text">🏠 Relax at home!</div></div>
+  </div>
+
+  <div class="accom" style="background:linear-gradient(135deg,#0c1631,#1a3a8f);border:1px solid rgba(240,192,64,.2)">
+    <div class="accom-icon">🏠</div>
+    <div>
+      <div class="accom-lbl">Made it!</div>
+      <div class="accom-name">Home Sweet Home · Mountain View, CA</div>
+      <div class="accom-detail">5 days · San Diego · Disney Magic · Ensenada · 🎃 Halloween at Sea · Memories forever</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- .container -->
+
+<footer>
+  <h2>Disney Magic · Mexican Riviera · 2026</h2>
+  <p>October 8–12 &nbsp;·&nbsp; San Diego &nbsp;·&nbsp; Ensenada, MX &nbsp;·&nbsp; 🎃 Halloween on the High Seas &nbsp;·&nbsp; One Magical Family</p>
+</footer>
+
+<script>
+const sections = document.querySelectorAll(".day-section");
+const navLinks = document.querySelectorAll(".day-nav a");
+if (sections[0]) sections[0].classList.add("visible");
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("visible");
+      navLinks.forEach(l => l.classList.remove("active"));
+      const a = document.querySelector(`.day-nav a[href="#${e.target.id}"]`);
+      if (a) { a.classList.add("active"); a.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" }); }
+    }
+  });
+}, { threshold: 0, rootMargin: "-64px 0px 0px 0px" });
+sections.forEach(s => obs.observe(s));
+navLinks.forEach(a => a.addEventListener("click", e => {
+  e.preventDefault();
+  const tgt = document.querySelector(a.getAttribute("href"));
+  if (tgt) { tgt.classList.add("visible"); tgt.scrollIntoView({ behavior: "smooth" }); }
+}));
+</script>
+</body>
+</html>
