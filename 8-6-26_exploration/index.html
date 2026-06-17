@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where to Go — Aug 6–9 Family Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #D6EAF7;
+    --ocean: #2E7BAF;
+    --deep: #0F2D44;
+    --sand: #F5EDD8;
+    --sun: #F5A623;
+    --moss: #5A7A5F;
+    --coral: #E8604C;
+    --fog: #8FA3B1;
+    --white: #FAFCFE;
+    --card-bg: #FFFFFF;
+    --border: #E2ECF3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--deep);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--deep);
+    color: white;
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 0%, rgba(46,123,175,0.35) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 100%, rgba(90,122,95,0.25) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sun);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .trip-meta {
+    display: inline-flex;
+    gap: 24px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+  }
+  .trip-meta span::before {
+    margin-right: 6px;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(15,45,68,0.06);
+  }
+  .filter-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-right: 4px;
+  }
+  .filter-btn {
+    border: 1.5px solid var(--border);
+    background: white;
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--deep);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .filter-btn:hover { border-color: var(--ocean); color: var(--ocean); }
+  .filter-btn.active { background: var(--deep); color: white; border-color: var(--deep); }
+
+  /* GRID */
+  .destinations {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 28px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(15,45,68,0.10);
+  }
+  .card.hidden { display: none; }
+
+  .card-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .tag-beach { background: #E8F4FD; color: var(--ocean); }
+  .tag-mountain { background: #EDF5EE; color: var(--moss); }
+  .tag-city { background: #FEF3EC; color: #C45E1A; }
+  .tag-desert { background: #FDF6E3; color: #B8861E; }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .card-state {
+    font-size: 13px;
+    color: var(--fog);
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+
+  /* QUICK STATS */
+  .quick-stats {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--deep);
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fog);
+    font-family: 'DM Mono', monospace;
+  }
+  .stat-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  /* VERDICT */
+  .verdict {
+    margin: 16px 24px 0;
+    padding: 12px 14px;
+    background: var(--sky);
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--deep);
+    font-weight: 400;
+  }
+  .verdict strong { color: var(--ocean); font-weight: 600; }
+
+  /* WEATHER BANNER */
+  .weather-banner {
+    margin: 12px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .weather-great { background: #EDFBF0; color: #2A7A3D; }
+  .weather-good { background: #FEF9E7; color: #9A6B00; }
+  .weather-mixed { background: #FEF0EC; color: #C04A30; }
+  .weather-icon { font-size: 18px; }
+  .weather-detail { font-weight: 400; color: inherit; opacity: 0.85; font-size: 12px; }
+
+  /* SECTIONS */
+  .card-body { padding: 20px 24px 24px; flex: 1; }
+
+  .section-toggle {
+    display: flex;
+    gap: 0;
+    background: var(--sand);
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 16px;
+  }
+  .toggle-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--fog);
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .toggle-btn.active {
+    background: white;
+    color: var(--deep);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  .activity-list { list-style: none; }
+  .activity-list li {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.45;
+    align-items: flex-start;
+  }
+  .activity-list li:last-child { border-bottom: none; }
+  .activity-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .activity-name { font-weight: 600; display: block; margin-bottom: 2px; }
+  .activity-note { font-size: 12px; color: var(--fog); font-weight: 400; }
+
+  /* SCORES */
+  .score-row {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--sand);
+  }
+  .score-item {
+    flex: 1;
+    text-align: center;
+  }
+  .score-bar-wrap {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    margin: 6px 0 4px;
+    overflow: hidden;
+  }
+  .score-bar {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--ocean);
+  }
+  .score-bar.kids { background: var(--coral); }
+  .score-bar.logistics { background: var(--moss); }
+  .score-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--deep);
+  }
+  .score-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fog);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-section {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+  .compare-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--deep);
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .compare-table th {
+    background: var(--deep);
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .compare-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    line-height: 1.4;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--sand); }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill-green { background: #EDFBF0; color: #2A7A3D; }
+  .pill-yellow { background: #FEF9E7; color: #9A6B00; }
+  .pill-red { background: #FEF0EC; color: #C04A30; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    color: var(--fog);
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 36px; }
+    .destinations { padding: 24px 16px 60px; grid-template-columns: 1fr; }
+    .filter-bar { padding: 12px 16px; }
+    .trip-meta { gap: 14px; font-size: 12px; flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+  }
+  .compare-table td:nth-child(4),
+  .compare-table td:nth-child(5),
+  .compare-table td:nth-child(6),
+  .compare-table td:nth-child(7) {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--deep);
+  }
+  .compare-table th:nth-child(4),
+  .compare-table th:nth-child(5),
+  .compare-table th:nth-child(6),
+  .compare-table th:nth-child(7) {
+    text-align: center;
+  }
+  .score-cell-5 { background: #D4EDDA !important; color: #1A6B30 !important; }
+  .score-cell-4 { background: #EAF4E8 !important; color: #2E7A3E !important; }
+  .score-cell-3 { background: #FEF9E7 !important; color: #8A6000 !important; }
+  .score-cell-2 { background: #FDE8E4 !important; color: #B03020 !important; }
+  .score-cell-1 { background: #FACCBF !important; color: #8B1A0A !important; }
+  .compare-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .compare-table th.sortable:hover { background: #1a3d56; }
+  .compare-table th.sort-asc .sort-icon::after { content: ' ↑'; }
+  .compare-table th.sort-desc .sort-icon::after { content: ' ↓'; }
+  .sort-icon { opacity: 0.6; font-size: 11px; }
+  .compare-table th.active-sort .sort-icon { opacity: 1; }
+  .compare-table td.total-col {
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-align: center;
+  }
+  .dest-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--ocean);
+    transition: color 0.15s;
+  }
+  .dest-link:hover { color: var(--deep); border-bottom-color: var(--deep); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">✈ SJC Direct · 4 days · Family of 4</div>
+  <h1>Where should we go<br>in <em>August?</em></h1>
+  <p class="hero-sub">Every destination below has a direct flight from San Jose. Scored for kids, adults, weather, and logistics — so you can pick and go.</p>
+  <div class="trip-meta">
+    <span>📅 Aug 6–9, 2026</span>
+    <span>👨‍👩‍👧‍👧 2 adults, 2 young kids</span>
+    <span>✈ Direct from SJC</span>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE (moved to top) -->
+<div style="max-width:1280px;margin:32px auto 0;padding:0 24px;">
+    <div class="compare-title">Quick Comparison</div>
+    <p style="font-size:12px;color:var(--fog);font-family:'DM Mono',monospace;margin-bottom:16px;">Click destination name to jump to card · Click score columns to sort</p>
+    <div style="overflow-x:auto;">
+    <table class="compare-table" id="compare-table">
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th>Flight from SJC</th>
+        <th>Approx. Fares</th>
+        <th class="sortable" data-col="3" onclick="sortTable(3)">Kids <span class="sort-icon">↕</span></th>
+        <th class="sortable" data-col="4" onclick="sortTable(4)">Adults <span class="sort-icon">↕</span></th>
+        <th class="sortable" data-col="5" onclick="sortTable(5)">Logistics <span class="sort-icon">↕</span></th>
+        <th class="sortable" data-col="6" onclick="sortTable(6)">Weather <span class="sort-icon">↕</span></th>
+        <th>Water Access</th>
+        <th class="sortable" data-col="total" onclick="sortTable('total')">Total <span class="sort-icon">↓</span></th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-honolulu')">Honolulu</a></td>
+        <td>~5 hrs direct</td>
+        <td>$650+/pp</td>
+        <td>5/5</td><td>4/5</td><td>3/5</td><td>5/5</td>
+        <td><span class="pill pill-green">Ocean ✓</span></td>
+        <td>17/20</td>
+        <td>Max kid joy, beach guarantee</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-abq')">Albuquerque / Santa Fe</a></td>
+        <td>~2.5 hrs direct</td>
+        <td>$200+/pp</td>
+        <td>5/5</td><td>4/5</td><td>4/5</td><td>3/5</td>
+        <td><span class="pill pill-red">None nearby</span></td>
+        <td>16/20</td>
+        <td>Meow Wolf anchor, most culturally rich</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-portland')">Portland</a></td>
+        <td>~1.5 hrs direct</td>
+        <td>$160+/pp</td>
+        <td>4/5</td><td>5/5</td><td>4/5</td><td>5/5</td>
+        <td><span class="pill pill-green">Coast 90min ✓</span></td>
+        <td>18/20</td>
+        <td>Best food + culture, Oregon Coast day trip</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-cabo')">Cabo San Lucas</a></td>
+        <td>~3 hrs direct</td>
+        <td>$350+/pp</td>
+        <td>4/5</td><td>5/5</td><td>4/5</td><td>3/5</td>
+        <td><span class="pill pill-green">Medano Beach ✓</span></td>
+        <td>16/20</td>
+        <td>Best resort/adult experience, pool days</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-eugene')">Eugene</a></td>
+        <td>~1 hr direct</td>
+        <td>$150+/pp</td>
+        <td>3/5</td><td>3/5</td><td>4/5</td><td>5/5</td>
+        <td><span class="pill pill-green">Coast 90min ✓</span></td>
+        <td>15/20</td>
+        <td>Quiet, Crater Lake, Florence beach 😄</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-pv')">Puerto Vallarta</a></td>
+        <td>~3.5 hrs direct</td>
+        <td>$300+/pp</td>
+        <td>4/5</td><td>4/5</td><td>4/5</td><td>3/5</td>
+        <td><span class="pill pill-green">Bay swimming ✓</span></td>
+        <td>15/20</td>
+        <td>Most soul of Mexico options, jungle + beach</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-cruise')">Ensenada Cruise (RC or Carnival)</a></td>
+        <td>~1.5 hrs SJC→LGB</td>
+        <td>~$195 RT + cabin</td>
+        <td>4/5</td><td>4/5</td><td>4/5</td><td>5/5</td>
+        <td><span class="pill pill-green">Pool + ocean ✓</span></td>
+        <td>17/20</td>
+        <td>All-inclusive floating resort, no hotel hassle</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-disney')">Disneyland</a></td>
+        <td>~1 hr to LAX/SNA</td>
+        <td>$150+/pp + park tix</td>
+        <td>5/5</td><td>3/5</td><td>5/5</td><td>3/5</td>
+        <td><span class="pill pill-red">No water</span></td>
+        <td>16/20</td>
+        <td>Pure kid magic, Florence's perfect age</td>
+      </tr>
+      <tr>
+        <td><a class="dest-link" onclick="scrollToCard('card-victoria')">Victoria, BC ⚠️</a></td>
+        <td>Connection req.</td>
+        <td>$350+/pp</td>
+        <td>4/5</td><td>5/5</td><td>2/5</td><td>5/5</td>
+        <td><span class="pill pill-yellow">Beach, no swim</span></td>
+        <td>16/20</td>
+        <td>Best weather + adult experience, no direct SJC</td>
+      </tr>
+    </tbody>
+  </table>
+  </div><!-- overflow-x:auto -->
+</div><!-- outer wrapper -->
+
+<!-- BROWSE CARDS SECTION -->
+<div style="max-width:1280px;margin:48px auto 0;padding:0 24px;">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:0;">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--deep);">Browse Destinations</div>
+    <div style="flex:1;height:1px;background:var(--border);"></div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active" onclick="filterCards('all', this)">All 9</button>
+  <button class="filter-btn" onclick="filterCards('beach', this)">🌊 Beach</button>
+  <button class="filter-btn" onclick="filterCards('mexico', this)">🇲🇽 Mexico</button>
+  <button class="filter-btn" onclick="filterCards('city', this)">🏙 City / Culture</button>
+  <button class="filter-btn" onclick="filterCards('cruise', this)">⛵ Cruise</button>
+  <button class="filter-btn" onclick="filterCards('great-weather', this)">☀ Best Weather</button>
+  <button class="filter-btn" onclick="filterCards('top-kids', this)">🧒 Best for Kids</button>
+  <button class="filter-btn" onclick="filterCards('theme-park', this)">🎢 Theme Park</button>
+</div>
+
+<!-- DESTINATION CARDS -->
+<div class="destinations" id="cards">
+
+  <!-- HONOLULU -->
+  <div class="card" id="card-honolulu" data-type="beach" data-weather="great" data-kids="5" data-adults="4" data-logistics="3">
+    <div class="card-header">
+      <span class="card-tag tag-beach">Beach · Island</span>
+      <div class="card-title">Honolulu</div>
+      <div class="card-state">Oahu, Hawaii · ~5 hrs direct</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~84°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$650+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">5 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-great" style="margin:12px 24px 0">
+      <span class="weather-icon">☀️</span>
+      <div>
+        <div>Excellent — sunny, warm, breezy</div>
+        <div class="weather-detail">Trade winds keep humidity comfortable. August is dry season on the south shore. Rain is brief and rare.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Best all-weather guarantee.</strong> Waikiki is tourist-busy but unbeatable for young kids — calm surf, flat beach, everything walkable. The longest flight on this list but the most foolproof destination.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🏖</span><div><span class="activity-name">Waikiki Beach</span><span class="activity-note">Calm surf, wide sand, perfect for toddlers wading and building sandcastles all day</span></div></li>
+        <li><span class="activity-icon">🐠</span><div><span class="activity-name">Hanauma Bay Snorkeling</span><span class="activity-note">Shallow reef with hundreds of fish — life-changing for a 3-year-old with a mask</span></div></li>
+        <li><span class="activity-icon">🦆</span><div><span class="activity-name">Honolulu Zoo</span><span class="activity-note">Right on Waikiki, walkable, solid animals. Easy half-day with young kids</span></div></li>
+        <li><span class="activity-icon">🚢</span><div><span class="activity-name">Pearl Harbor Historic Site</span><span class="activity-note">More for slightly older kids but the boats and planes are impressive even for toddlers</span></div></li>
+        <li><span class="activity-icon">🍦</span><div><span class="activity-name">Matsumoto Shave Ice</span><span class="activity-note">45-min drive to North Shore — iconic, worth the trip for the beach and shave ice combo</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🌺</span><div><span class="activity-name">Diamond Head Hike</span><span class="activity-note">Short but dramatic crater rim hike. Bring the kids — it's only 1.6 miles round trip</span></div></li>
+        <li><span class="activity-icon">🍜</span><div><span class="activity-name">Chinatown Food Crawl</span><span class="activity-note">Authentic Vietnamese, Filipino, Hawaiian plate lunch. Kids handle it fine with noodles and rice</span></div></li>
+        <li><span class="activity-icon">🌊</span><div><span class="activity-name">North Shore (Haleiwa)</span><span class="activity-note">Surf culture, food trucks, famous shrimp plates. Calm in August so swimmable</span></div></li>
+        <li><span class="activity-icon">🌅</span><div><span class="activity-name">Lanikai Beach Sunrise</span><span class="activity-note">Windward side, arguably the most beautiful beach on Oahu. Early morning before crowds</span></div></li>
+        <li><span class="activity-icon">🍹</span><div><span class="activity-name">Sunset at Duke's Waikiki</span><span class="activity-note">Classic Hawaiian beach bar. Kids welcome early evening. Mai tais, live music, ocean view</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:60%"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:var(--sun)"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALBUQUERQUE / SANTA FE -->
+  <div class="card" id="card-abq" data-type="desert" data-weather="good" data-kids="5" data-adults="4" data-logistics="4">
+    <div class="card-header">
+      <span class="card-tag tag-desert">Desert · Southwest</span>
+      <div class="card-title">Albuquerque / Santa Fe</div>
+      <div class="card-state">New Mexico · ~2.5 hrs direct to ABQ</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~91°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$200+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">2.5 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-good" style="margin:12px 24px 0">
+      <span class="weather-icon">⛈️</span>
+      <div>
+        <div>Good mornings, monsoon afternoons</div>
+        <div class="weather-detail">August is monsoon season. Mornings are stunning — sunny, dry, 75°F. Afternoon thunderstorms roll in around 2–4pm most days and pass quickly. Plan outdoors before noon.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Meow Wolf is the killer app.</strong> Base in Santa Fe (1 hr from ABQ airport), lead with Meow Wolf as the anchor, add Bandelier for scrambling kids. The monsoon rhythm actually maps perfectly onto a toddler schedule — morning out, afternoon shelter. Most culturally interesting destination on this list.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🌀</span><div><span class="activity-name">Meow Wolf Santa Fe</span><span class="activity-note">Immersive art installation with hidden rooms, lights, and interactive everything. Perfect for curious young kids — Florence will be in heaven</span></div></li>
+        <li><span class="activity-icon">🪨</span><div><span class="activity-name">Bandelier National Monument</span><span class="activity-note">45 min from Santa Fe — ancient cliff dwellings with ladders to climb. Kids scramble around; feels like an adventure, not a museum</span></div></li>
+        <li><span class="activity-icon">🎈</span><div><span class="activity-name">Balloon Fiesta Grounds (Gondola)</span><span class="activity-note">Even off-festival season, the tram and grounds are worth a visit. Hot air balloon rides for families available year-round</span></div></li>
+        <li><span class="activity-icon">🏛</span><div><span class="activity-name">New Mexico Children's Museum</span><span class="activity-note">Hands-on exhibits in Albuquerque — good rainy-afternoon backup during a monsoon</span></div></li>
+        <li><span class="activity-icon">🌿</span><div><span class="activity-name">Santa Fe Plaza & Canyon Road</span><span class="activity-note">Flat, walkable, colorful. Kids love the fountain at the Plaza and street performers</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Santa Fe Restaurant Scene</span><span class="activity-note">The Shed, Cafe Pasqual's, Joseph's — outstanding New Mexican cuisine. Red or green chile is a revelation</span></div></li>
+        <li><span class="activity-icon">🎨</span><div><span class="activity-name">Georgia O'Keeffe Museum</span><span class="activity-note">World-class collection in a beautiful space. Kids can tag along for an hour without protest</span></div></li>
+        <li><span class="activity-icon">🌄</span><div><span class="activity-name">Taos Day Trip</span><span class="activity-note">1.5 hrs north — Taos Pueblo (UNESCO site), dramatic gorge bridge, charming art town. A full rewarding day</span></div></li>
+        <li><span class="activity-icon">🧘</span><div><span class="activity-name">Ten Thousand Waves</span><span class="activity-note">Japanese mountain spa outside Santa Fe. Private family soaking pools available — kids welcome</span></div></li>
+        <li><span class="activity-icon">🚃</span><div><span class="activity-name">Sandia Peak Tramway</span><span class="activity-note">World's longest aerial tram from ABQ up to 10,378 ft. Views are stunning; kids love the ride</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%; background:var(--sun)"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTLAND -->
+  <div class="card" id="card-portland" data-type="city" data-weather="great" data-kids="4" data-adults="5" data-logistics="4">
+    <div class="card-header">
+      <span class="card-tag tag-city">City · Coast Access</span>
+      <div class="card-title">Portland</div>
+      <div class="card-state">Oregon · ~1.5 hrs direct</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~82°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$160+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">1.5 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-great" style="margin:12px 24px 0">
+      <span class="weather-icon">🌤</span>
+      <div>
+        <div>Excellent — August is Portland's golden window</div>
+        <div class="weather-detail">The one month Portland reliably behaves. Sunny, low humidity, rarely above 85°F. Almost no rain. Don't visit any other month.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Best for adults who want a real trip.</strong> Outstanding food scene, beautiful city, Oregon Coast 90 min away. Kids are genuinely well-served too — great children's museum, parks, beaches. Feels like a grown-up trip that works for the whole family.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🔬</span><div><span class="activity-name">Oregon Museum of Science & Industry</span><span class="activity-note">OMSI — hands-on exhibits, planetarium, kids love it. Half-day easy</span></div></li>
+        <li><span class="activity-icon">🌊</span><div><span class="activity-name">Cannon Beach Day Trip</span><span class="activity-note">90 min drive. Haystack Rock tide pools, calm beach, iconic Oregon coast scenery</span></div></li>
+        <li><span class="activity-icon">🌲</span><div><span class="activity-name">Forest Park Trails</span><span class="activity-note">5,000 acres of urban forest. Short flat trails perfect for toddler legs and big trees</span></div></li>
+        <li><span class="activity-icon">🐘</span><div><span class="activity-name">Oregon Zoo</span><span class="activity-note">One of the best zoos in the West. Elephants, polar bears, great layout for families</span></div></li>
+        <li><span class="activity-icon">🍩</span><div><span class="activity-name">Voodoo Doughnut</span><span class="activity-note">The line is long but kids adore the insane donut shapes. Make it a morning adventure</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Dinner on SE Division St</span><span class="activity-note">Portland's best restaurant corridor — Pok Pok, Tusk, Ava Gene's. World-class food scene</span></div></li>
+        <li><span class="activity-icon">☕</span><div><span class="activity-name">Coffee Crawl (Stumptown, Heart)</span><span class="activity-note">Portland is a serious coffee city. Morning ritual while kids eat pastries works perfectly</span></div></li>
+        <li><span class="activity-icon">🌄</span><div><span class="activity-name">Columbia River Gorge</span><span class="activity-note">Multnomah Falls + Vista House — stunning 1-hr drive east. Short walk, dramatic waterfall</span></div></li>
+        <li><span class="activity-icon">🎨</span><div><span class="activity-name">Pearl District & Powell's Books</span><span class="activity-note">World's largest bookstore. Genuinely fun for adults; kids love the children's section</span></div></li>
+        <li><span class="activity-icon">🍺</span><div><span class="activity-name">McMenamins Kennedy School</span><span class="activity-note">Converted school with brewpub, movie theater, soaking pool. Kid-friendly early evening</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:var(--sun)"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABO SAN LUCAS -->
+  <div class="card" id="card-cabo" data-type="beach" data-weather="good" data-kids="4" data-adults="5" data-logistics="4" data-region="mexico">
+    <div class="card-header">
+      <span class="card-tag tag-beach">Beach · Resort</span>
+      <div class="card-title">Cabo San Lucas</div>
+      <div class="card-state">Baja California Sur, Mexico · ~3 hrs direct</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~93°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$350+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">3 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-good" style="margin:12px 24px 0">
+      <span class="weather-icon">🌤</span>
+      <div>
+        <div>Hot but manageable — resort pools save the day</div>
+        <div class="weather-detail">August is Cabo's hottest and most humid month, and hurricane season is technically active. That said, actual storms are rare and resort zones with pools make the heat a non-issue. Medano Beach has calm, swimmable water.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Best resort experience closest to Hawaii vibes.</strong> The all-inclusive or luxury resort model makes Cabo uniquely low-planning — everything is on-site. Medano Beach is one of the only swimmable beaches in the area; the Pacific side is too rough. Great adult destination that happens to work for kids too.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🏖</span><div><span class="activity-name">Medano Beach</span><span class="activity-note">The only calm swimmable beach in Cabo — gentle waves, warm water, vendors bring snacks to you. Toddler perfect</span></div></li>
+        <li><span class="activity-icon">🐋</span><div><span class="activity-name">Glass-Bottom Boat to El Arco</span><span class="activity-note">Short boat ride to the iconic arch rock. Kids see fish through the glass bottom, sea lions on the rocks</span></div></li>
+        <li><span class="activity-icon">🏊</span><div><span class="activity-name">Resort Pool Days</span><span class="activity-note">Cabo resorts have extraordinary pools — lazy rivers, waterslides, kids' areas. Honestly a full-day activity</span></div></li>
+        <li><span class="activity-icon">🐬</span><div><span class="activity-name">Dolphin & Snorkel Tours</span><span class="activity-note">Many family tours depart from the marina. Snorkeling at Chileno Bay is calm and fish-rich</span></div></li>
+        <li><span class="activity-icon">🌮</span><div><span class="activity-name">Taco Stands on Hidalgo St</span><span class="activity-note">Walk the downtown strip for street tacos — fish tacos, shrimp, al pastor. Kids love the chaos and flavor</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🎣</span><div><span class="activity-name">Deep Sea Fishing</span><span class="activity-note">Cabo is world-famous for marlin and dorado. Half-day charter while kids stay at the resort pool</span></div></li>
+        <li><span class="activity-icon">🍹</span><div><span class="activity-name">Sunset Cruise</span><span class="activity-note">Catamaran sunset sail with open bar past El Arco. One of the best evenings you can have here. Kids welcome</span></div></li>
+        <li><span class="activity-icon">🏜</span><div><span class="activity-name">Desert & Dune ATV Tour</span><span class="activity-note">Head into the Baja desert above town. Stunning landscape contrast with the ocean below</span></div></li>
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Dinner at Edith's or Manta</span><span class="activity-note">Cabo has legitimately great restaurants. Manta at Cape Hotel is a standout. Reserve ahead</span></div></li>
+        <li><span class="activity-icon">🧖</span><div><span class="activity-name">Spa Day</span><span class="activity-note">Every major resort has a world-class spa. Split: one parent at the spa, one at the beach with kids</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%; background:var(--sun)"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EUGENE -->
+  <div class="card" id="card-eugene" data-type="city" data-weather="great" data-kids="3" data-adults="3" data-logistics="4">
+    <div class="card-header">
+      <span class="card-tag tag-city">College Town · Coast</span>
+      <div class="card-title">Eugene</div>
+      <div class="card-state">Oregon · ~1 hr direct</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~82°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$150+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">1 hr</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-great" style="margin:12px 24px 0">
+      <span class="weather-icon">🌤</span>
+      <div>
+        <div>Very good — warm, dry August</div>
+        <div class="weather-detail">Like Portland, August is Eugene's best month. Sunny and dry, low humidity. Oregon coast 1.5 hrs west. Rarely above 85°F.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Best-kept secret, ideal for low-key families.</strong> Laid-back college town vibe, no crowds, excellent access to Oregon Coast and Crater Lake. Smaller scale makes it feel manageable with young kids. Not as wow-factor as Portland but very pleasant.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🌊</span><div><span class="activity-name">Florence, OR Beach Day</span><span class="activity-note">1.5 hrs west — sand dunes and ocean. Florence visiting Florence. The photos write themselves</span></div></li>
+        <li><span class="activity-icon">🦋</span><div><span class="activity-name">Mount Pisgah Arboretum</span><span class="activity-note">Beautiful nature trails along the Willamette. Kids can splash in the creek. Free entry</span></div></li>
+        <li><span class="activity-icon">🐟</span><div><span class="activity-name">Science Factory Children's Museum</span><span class="activity-note">Small but hands-on. Good backup option for a rainy afternoon (rare in August)</span></div></li>
+        <li><span class="activity-icon">🌿</span><div><span class="activity-name">Hendricks Park & Rose Garden</span><span class="activity-note">Oldest park in Eugene. Great shaded trails, picnic-friendly, easy for toddlers</span></div></li>
+        <li><span class="activity-icon">🚂</span><div><span class="activity-name">Lane County Fairgrounds</span><span class="activity-note">County fair runs mid-August — rides, animals, food. Check if timing overlaps</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🌋</span><div><span class="activity-name">Crater Lake Day Trip</span><span class="activity-note">2.5 hrs southeast — one of the most stunning natural sights in the US. Deep blue, no crowds at rim</span></div></li>
+        <li><span class="activity-icon">☕</span><div><span class="activity-name">Eugene Coffee & Food Scene</span><span class="activity-note">College town with disproportionately good cafes and vegetarian-friendly restaurants</span></div></li>
+        <li><span class="activity-icon">🍷</span><div><span class="activity-name">Willamette Valley Wineries</span><span class="activity-note">World-class Pinot Noir country, 30 min north. Several tasting rooms welcome families</span></div></li>
+        <li><span class="activity-icon">🏃</span><div><span class="activity-name">Pre's Trail / Alton Baker Park</span><span class="activity-note">Legendary running/biking trail along the Willamette. Beautiful morning walk or jog</span></div></li>
+        <li><span class="activity-icon">🎭</span><div><span class="activity-name">Hult Center for Performing Arts</span><span class="activity-note">Check summer programming — often family-friendly performances in August</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:60%"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:var(--sun)"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUERTO VALLARTA -->
+  <div class="card" id="card-pv" data-type="beach" data-weather="good" data-kids="4" data-adults="4" data-logistics="4" data-region="mexico">
+    <div class="card-header">
+      <span class="card-tag tag-beach">Beach · Jungle · Culture</span>
+      <div class="card-title">Puerto Vallarta</div>
+      <div class="card-state">Jalisco, Mexico · ~3.5 hrs direct</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~88°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$300+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">3.5 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-good" style="margin:12px 24px 0">
+      <span class="weather-icon">🌦</span>
+      <div>
+        <div>Warm and lush — afternoon rain is part of it</div>
+        <div class="weather-detail">August is PV's green season — hot and humid, with afternoon showers most days. Rain is usually brief and dramatic, not all-day. Mornings are reliably gorgeous. The jungle is incredibly lush.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>More soul than Cabo, more adventure than a resort bubble.</strong> PV has a real town — cobblestone Malecón, great local food, jungle canopy tours. The beach zone (Hotel Zone) is family-friendly with calm bay water. Feels like Mexico, not just a beach compound.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🏖</span><div><span class="activity-name">Banderas Bay Swimming</span><span class="activity-note">Enormous protected bay with calm, warm water. The Hotel Zone beaches are gentle enough for toddlers all day</span></div></li>
+        <li><span class="activity-icon">🐊</span><div><span class="activity-name">Vallarta Botanical Garden</span><span class="activity-note">Stunning jungle garden 30 min south. River swimming spot on-site — kids love the natural pool</span></div></li>
+        <li><span class="activity-icon">🚤</span><div><span class="activity-name">Yelapa Day Boat Trip</span><span class="activity-note">Boat to a remote jungle beach village with a waterfall. No roads in — kids think it's magical</span></div></li>
+        <li><span class="activity-icon">🌮</span><div><span class="activity-name">Malecón Food Walk</span><span class="activity-note">The boardwalk is packed with street food, art sculptures, and sea views. Great evening activity for families</span></div></li>
+        <li><span class="activity-icon">🐬</span><div><span class="activity-name">Whale Watching / Dolphin Tour</span><span class="activity-note">August brings manta rays and dolphins into the bay. Short boat tours depart from the marina</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🌿</span><div><span class="activity-name">Canopy / Zip-line Tours</span><span class="activity-note">World-class zip-line operations through the Sierra Madre jungle above PV. Kids 6+ can usually join</span></div></li>
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Romantic Zone Restaurants</span><span class="activity-note">PV's best food neighborhood — La Palapa, El Arrayán, Tintoque. Much better than Cabo for real Mexican cuisine</span></div></li>
+        <li><span class="activity-icon">🏄</span><div><span class="activity-name">Surf Lessons at Sayulita</span><span class="activity-note">1 hr north — the best beginner surf town in Mexico. Great day trip, very family friendly</span></div></li>
+        <li><span class="activity-icon">🍹</span><div><span class="activity-name">Sunset Sailing</span><span class="activity-note">Catamaran sunset cruise on the bay. Open bar, live music, stunning Sierra Madre backdrop</span></div></li>
+        <li><span class="activity-icon">🎨</span><div><span class="activity-name">Old Town Art Walk (Thursdays)</span><span class="activity-note">Galleries open late with wine and live music. Very walkable, kids in tow is totally fine</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%; background:var(--sun)"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRUISE: ENSENADA -->
+  <div class="card" id="card-cruise" data-type="cruise" data-weather="great" data-kids="4" data-adults="4" data-logistics="4">
+    <div class="card-header">
+      <span class="card-tag tag-beach">Cruise · Baja Mexico</span>
+      <div class="card-title">3-Night Ensenada Cruise</div>
+      <div class="card-state">Departs Long Beach, CA · Aug 7–10 · ~1.5 hr SJC→LGB direct (Southwest)</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~80°F</div><div class="stat-label">Ocean Avg</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$195</div><div class="stat-label">RT/pp SJC→LGB</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">1.5 hrs</div><div class="stat-label">Flight</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-great" style="margin:12px 24px 0">
+      <span class="weather-icon">⛵</span>
+      <div>
+        <div>Excellent — ocean breezes keep it comfortable</div>
+        <div class="weather-detail">Pacific coast in August is warm but not brutal. Ocean breezes on deck make it feel cooler than land. Ensenada itself is mid-70s. No rain. Ideal cruise weather.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>Two ships, same dates — you're choosing between them.</strong> Southwest flies SJC→LGB direct (~1.5 hrs, ~$195 RT/pp). <strong>Carnival Firenze</strong> departs Long Beach — terminal is just 15 min from LGB airport, making this one of the smoothest door-to-ship logistics on the list. <strong>Royal Caribbean Quantum</strong> departs San Pedro (~30 min Uber from LGB). RC has more kid amenities and a flashier ship; Carnival is more budget-friendly with a beautiful Italian-designed interior. Both are floating resorts with kids' clubs, pools, and food included.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🏊</span><div><span class="activity-name">Pool Deck & Waterslides</span><span class="activity-note">Both ships have multiple pools and waterslides. RC Quantum has a FlowRider surf simulator and waterpark. Toddlers love the splash zones — this alone fills a sea day</span></div></li>
+        <li><span class="activity-icon">🎨</span><div><span class="activity-name">Kids' Club (Camp Ocean / Adventure Ocean)</span><span class="activity-note">RC and Carnival both run supervised kids' clubs for ages 2+. Drop Florence off for a few hours — genuinely fun for her, genuinely relaxing for you</span></div></li>
+        <li><span class="activity-icon">🌮</span><div><span class="activity-name">Ensenada Port Day</span><span class="activity-note">One full day in Ensenada. La Bufadora blowhole is a 30-min drive and kids love the dramatic spray. Avenida López Mateos has great street tacos and churros</span></div></li>
+        <li><span class="activity-icon">🎭</span><div><span class="activity-name">Live Shows & Entertainment</span><span class="activity-note">Both ships have Broadway-style productions and family shows each evening. Kids this age are riveted by the spectacle</span></div></li>
+        <li><span class="activity-icon">🍦</span><div><span class="activity-name">Unlimited Ice Cream & Food</span><span class="activity-note">The buffet never closes. Kids' food stations, pizza, ice cream machines, burgers — all included. A toddler's dream scenario</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Specialty Dining</span><span class="activity-note">RC has Wonderland (avant-garde tasting menu) and Izumi. Carnival has Fahrenheit 555 Steakhouse and Bonsai Teppanyaki. Book a night out while kids are in club</span></div></li>
+        <li><span class="activity-icon">🌅</span><div><span class="activity-name">Sea Day Deck Lounging</span><span class="activity-note">One full day at sea each way. Nothing to plan. Drink package, deck chair, ocean horizon. The antidote to overthinking vacations</span></div></li>
+        <li><span class="activity-icon">🎰</span><div><span class="activity-name">Casino & Nightlife</span><span class="activity-note">Both ships have casinos, bars, and live music venues active after kids' bedtime. Easy to enjoy once Florence is down</span></div></li>
+        <li><span class="activity-icon">🧖</span><div><span class="activity-name">Spa (Cloud 9 / RC Spa)</span><span class="activity-note">Full spa on both ships. Carnival's Cloud 9 Spa is well-regarded. Book sea-day appointments — they fill up fast</span></div></li>
+        <li><span class="activity-icon">🍷</span><div><span class="activity-name">Ensenada Wine Country</span><span class="activity-note">Valle de Guadalupe is Baja's famous wine region, 30 min from the port. Excellent for an afternoon tour while grandparents or the ship's club watches kids</span></div></li>
+      </ul>
+    </div>
+
+    <!-- Ship comparison sub-section -->
+    <div style="margin: 0 24px 16px; padding: 14px; background: var(--sand); border-radius: 12px; font-size: 12.5px; line-height: 1.55;">
+      <div style="font-weight: 700; font-size: 13px; margin-bottom: 10px; color: var(--deep);">⚓ RC Quantum vs. Carnival Firenze</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div>
+          <div style="font-weight: 600; color: var(--ocean); margin-bottom: 4px;">🔵 Royal Caribbean Quantum</div>
+          <div style="color: var(--deep);">• Larger, more amenities<br>• FlowRider, rock climbing, bumper cars<br>• Adventure Ocean kids' club (age 3+)<br>• Stronger tech/app integration<br>• Higher price point<br>• Departs San Pedro (LA)</div>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: var(--coral); margin-bottom: 4px;">🔴 Carnival Firenze</div>
+          <div style="color: var(--deep);">• Italian-designed interiors<br>• More budget-friendly<br>• Camp Ocean (age 2+)<br>• Fun, lively party atmosphere<br>• Great for families on value<br>• Departs Long Beach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:var(--sun)"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISNEYLAND -->
+  <div class="card" id="card-disney" data-type="theme-park" data-weather="good" data-kids="5" data-adults="3" data-logistics="5">
+    <div class="card-header">
+      <span class="card-tag tag-city">Theme Park · SoCal</span>
+      <div class="card-title">Disneyland</div>
+      <div class="card-state">Anaheim, California · ~1 hr flight to LAX/SNA</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~90°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$150+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">1 hr + drive</div><div class="stat-label">Total travel</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-good" style="margin:12px 24px 0">
+      <span class="weather-icon">☀️</span>
+      <div>
+        <div>Hot but manageable — park has shade and A/C</div>
+        <div class="weather-detail">Anaheim in August is sunny and dry, around 88–92°F. No rain. Hot for standing in lines but the park has plenty of shade, indoor rides, and misting stations. Early arrival essential.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>The pure kid maximalist pick.</strong> Florence is at the exact perfect age for Disneyland — old enough to understand the magic, young enough to believe it completely. No other destination on this list generates the same level of kid joy per hour. The adult experience is more "along for the ride" but genuinely fun if you lean in. Logistics are extremely easy.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🏰</span><div><span class="activity-name">Fantasyland — It's a Small World, Dumbo, Carousel</span><span class="activity-note">The toddler zone. All rides are appropriate for Florence's age, low wait times in early morning. This is her entire world right now</span></div></li>
+        <li><span class="activity-icon">🚂</span><div><span class="activity-name">Disneyland Railroad</span><span class="activity-note">Circles the whole park. Great rest ride for little legs — sit down, see everything, no effort required</span></div></li>
+        <li><span class="activity-icon">🌟</span><div><span class="activity-name">Character Meet & Greets</span><span class="activity-note">Mickey, Minnie, princesses — book Lightning Lane or get there at rope drop. The photos are worth the trip alone</span></div></li>
+        <li><span class="activity-icon">🎠</span><div><span class="activity-name">Mickey's Toontown</span><span class="activity-note">Redesigned in 2023 specifically for toddlers — splash zone, Mickey's house, Chip & Dale Treehouse. Peak Florence territory</span></div></li>
+        <li><span class="activity-icon">🏄</span><div><span class="activity-name">California Adventure — Radiator Springs</span><span class="activity-note">Cars Land is stunning. Mater's Junkyard Jamboree is perfect for her age; Luigi's Rollickin' Roadsters too</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🎢</span><div><span class="activity-name">Indiana Jones & Matterhorn (early morning)</span><span class="activity-note">Hit these first at rope drop before lines build. Classic adult-worthy rides that still hold up</span></div></li>
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Blue Bayou Restaurant</span><span class="activity-note">Inside Pirates of the Caribbean — atmospheric, genuinely good food, a rare grown-up dining moment inside the park. Reserve ahead</span></div></li>
+        <li><span class="activity-icon">🌆</span><div><span class="activity-name">Galaxy's Edge at Dusk</span><span class="activity-note">Star Wars land is most magical at night. Millennium Falcon ride is excellent. Kids and adults equally wowed</span></div></li>
+        <li><span class="activity-icon">🍸</span><div><span class="activity-name">Carthay Circle Lounge (DCA)</span><span class="activity-note">The only real bar in the parks. Excellent cocktails, nice respite while kids nap in stroller outside</span></div></li>
+        <li><span class="activity-icon">🎆</span><div><span class="activity-name">Fantasmic! Nighttime Show</span><span class="activity-note">Spectacular water, fire, and projection show on the Rivers of America. Both parks have evening spectaculars — worth staying late once</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%; background:var(--sun)"></div></div>
+        <div class="score-num">3/5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VICTORIA BC -->
+  <div class="card" id="card-victoria" data-type="city" data-weather="great" data-kids="4" data-adults="5" data-logistics="2">
+    <div class="card-header">
+      <span class="card-tag tag-city">Island City · Canada</span>
+      <div class="card-title">Victoria, BC</div>
+      <div class="card-state">British Columbia, Canada · No SJC direct ⚠️</div>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-value">~68°F</div><div class="stat-label">Avg High</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">~$350+</div><div class="stat-label">Flights/pp</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="stat-value">3–4 hrs</div><div class="stat-label">Total travel</div></div>
+      </div>
+    </div>
+    <div class="weather-banner weather-great" style="margin:12px 24px 0">
+      <span class="weather-icon">🌤</span>
+      <div>
+        <div>Best weather on this list — genuinely perfect</div>
+        <div class="weather-detail">August is Victoria's warmest and sunniest month. Highs around 68–72°F, almost zero rain, low humidity. The most reliably comfortable weather of any destination here. Light jacket in the evenings.</div>
+      </div>
+    </div>
+    <div class="verdict" style="margin:12px 24px 0">
+      <strong>⚠️ No direct SJC flight — requires connection or ferry via Seattle.</strong> Best option: fly SJC→SEA (2 hrs) + Kenmore Air floatplane to Victoria harbor (35 min) — actually magical. Or fly to Vancouver and ferry. Worth flagging since this was your constraint, but the destination itself is exceptional for families.
+    </div>
+    <div class="card-body">
+      <div class="section-toggle">
+        <button class="toggle-btn active" onclick="toggleSection(this, 'kids')">🧒 Kids Top 5</button>
+        <button class="toggle-btn" onclick="toggleSection(this, 'adults')">🍷 Adults Top 5</button>
+      </div>
+      <ul class="activity-list kids-list">
+        <li><span class="activity-icon">🐋</span><div><span class="activity-name">Whale Watching</span><span class="activity-note">Orcas, humpbacks, and minkes frequent the Salish Sea in August. Best whale watching in North America. Kids remember it forever</span></div></li>
+        <li><span class="activity-icon">🌸</span><div><span class="activity-name">Butchart Gardens</span><span class="activity-note">World-famous sunken garden — 55 acres of flowers. Kids go for the Saturday night fireworks display; daytime is equally stunning</span></div></li>
+        <li><span class="activity-icon">🦦</span><div><span class="activity-name">Victoria Bug Zoo & Miniature World</span><span class="activity-note">Two quirky attractions downtown kids love — giant insects to hold and an absurdly detailed miniature world</span></div></li>
+        <li><span class="activity-icon">🚲</span><div><span class="activity-name">Inner Harbour Bike Ride</span><span class="activity-note">Flat, scenic waterfront path. Rent a quadricycle for the family — kids ride along in style</span></div></li>
+        <li><span class="activity-icon">🏖</span><div><span class="activity-name">Willows Beach / Gyro Park</span><span class="activity-note">Calm sheltered beach with playground. Not tropical but beautiful — clean, uncrowded, perfect August afternoon</span></div></li>
+      </ul>
+      <ul class="activity-list adults-list" style="display:none">
+        <li><span class="activity-icon">🍺</span><div><span class="activity-name">Victoria Craft Beer Scene</span><span class="activity-note">One of Canada's best brewery cities — Driftwood, Phillips, Hoyne. Many patios welcome kids in the afternoon</span></div></li>
+        <li><span class="activity-icon">🫖</span><div><span class="activity-name">Afternoon Tea at the Empress</span><span class="activity-note">The Fairmont Empress hotel afternoon tea is iconic. Dress up the kids — they have a children's menu version</span></div></li>
+        <li><span class="activity-icon">🌊</span><div><span class="activity-name">Kayaking the Gulf Islands</span><span class="activity-note">Half-day guided sea kayak tour from the harbor. Calm, beautiful, wildlife everywhere. Kids 5+ can join some tours</span></div></li>
+        <li><span class="activity-icon">🍽</span><div><span class="activity-name">Dinner on Government St</span><span class="activity-note">Excellent seafood, Pacific Northwest cuisine. Brasserie L'École and Agrius are standouts</span></div></li>
+        <li><span class="activity-icon">🏛</span><div><span class="activity-name">Royal BC Museum</span><span class="activity-note">World-class natural history and First Nations collections. Kids love the life-size woolly mammoth</span></div></li>
+      </ul>
+    </div>
+    <div class="score-row">
+      <div class="score-item">
+        <div class="score-lbl">Kids</div>
+        <div class="score-bar-wrap"><div class="score-bar kids" style="width:80%"></div></div>
+        <div class="score-num">4/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Adults</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Logistics</div>
+        <div class="score-bar-wrap"><div class="score-bar logistics" style="width:40%"></div></div>
+        <div class="score-num">2/5</div>
+      </div>
+      <div class="score-item">
+        <div class="score-lbl">Weather</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:var(--sun)"></div></div>
+        <div class="score-num">5/5</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<footer>
+  Built for Andrew & Jwoo · Aug 6–9 2026 · Direct from SJC · All weather based on August historical averages
+</footer>
+
+<script>
+  let currentSortCol = 'total';
+  let currentSortDir = 'asc'; // will be flipped to desc on first sortTable('total') call
+
+  function sortTable(col) {
+    const tbody = document.querySelector('#compare-table tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    // Toggle direction if same col, else default desc
+    if (col === currentSortCol) {
+      currentSortDir = currentSortDir === 'desc' ? 'asc' : 'desc';
+    } else {
+      currentSortDir = 'desc';
+      currentSortCol = col;
+    }
+
+    rows.sort((a, b) => {
+      let aVal, bVal;
+      if (col === 'total') {
+        aVal = parseInt(a.cells[8].textContent);
+        bVal = parseInt(b.cells[8].textContent);
+      } else {
+        aVal = parseInt(a.cells[col].textContent);
+        bVal = parseInt(b.cells[col].textContent);
+      }
+      return currentSortDir === 'desc' ? bVal - aVal : aVal - bVal;
+    });
+
+    rows.forEach(r => tbody.appendChild(r));
+
+    // Update header indicators
+    document.querySelectorAll('#compare-table th.sortable').forEach(th => {
+      th.classList.remove('active-sort');
+      const icon = th.querySelector('.sort-icon');
+      if (icon) icon.textContent = '↕';
+    });
+    const activeCol = col === 'total' ? 8 : col;
+    const activeTh = document.querySelector(`#compare-table th[data-col="${col}"]`);
+    if (activeTh) {
+      activeTh.classList.add('active-sort');
+      const icon = activeTh.querySelector('.sort-icon');
+      if (icon) icon.textContent = currentSortDir === 'desc' ? '↓' : '↑';
+    }
+
+    // Re-apply colors after sort
+    colorScoreCells();
+  }
+
+  function colorScoreCells() {
+    const scoreColors = { 5: '#1A6B30', 4: '#2A7A3E', 3: '#8A6000', 2: '#B03020', 1: '#8B1A0A' };
+    const scoreBgs    = { 5: '#C9EEDD', 4: '#DFF0D8', 3: '#FEF3CD', 2: '#FDE0DB', 1: '#FACCBF' };
+    const totalColors = { 20:'#1A6B30',19:'#1A6B30',18:'#2A7A3E',17:'#2A7A3E',16:'#8A6000',15:'#8A6000',14:'#B03020' };
+    const totalBgs    = { 20:'#C9EEDD',19:'#C9EEDD',18:'#DFF0D8',17:'#DFF0D8',16:'#FEF3CD',15:'#FEF3CD',14:'#FDE0DB' };
+
+    document.querySelectorAll('#compare-table tbody tr').forEach(row => {
+      [3, 4, 5, 6].forEach(i => {
+        const cell = row.cells[i];
+        if (!cell) return;
+        const val = parseInt(cell.textContent);
+        if (scoreBgs[val]) {
+          cell.style.background = scoreBgs[val];
+          cell.style.color = scoreColors[val];
+          cell.style.fontWeight = '700';
+        }
+      });
+      // Total column (index 8)
+      const totalCell = row.cells[8];
+      if (totalCell) {
+        const val = parseInt(totalCell.textContent);
+        totalCell.style.background = totalBgs[val] || '';
+        totalCell.style.color = totalColors[val] || '';
+        totalCell.style.fontWeight = '700';
+        totalCell.style.textAlign = 'center';
+        totalCell.style.fontFamily = "'DM Mono', monospace";
+      }
+    });
+  }
+
+  function scrollToCard(id) {
+    const card = document.getElementById(id);
+    if (!card) return;
+    // If card is hidden by a filter, reset to show all first
+    if (card.classList.contains('hidden')) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('hidden'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-btn').classList.add('active');
+    }
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.style.outline = '3px solid var(--ocean)';
+    card.style.outlineOffset = '3px';
+    setTimeout(() => { card.style.outline = ''; card.style.outlineOffset = ''; }, 1800);
+  }
+
+  function toggleSection(btn, type) {
+    const card = btn.closest('.card');
+    const toggleBtns = card.querySelectorAll('.toggle-btn');
+    const kidsList = card.querySelector('.kids-list');
+    const adultsList = card.querySelector('.adults-list');
+    toggleBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (type === 'kids') {
+      kidsList.style.display = 'block';
+      adultsList.style.display = 'none';
+    } else {
+      kidsList.style.display = 'none';
+      adultsList.style.display = 'block';
+    }
+  }
+
+  function filterCards(filter, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      let show = false;
+      const type = card.dataset.type;
+      const weather = card.dataset.weather;
+      const kids = parseInt(card.dataset.kids);
+      const region = card.dataset.region || '';
+      if (filter === 'all') {
+        show = true;
+      } else if (filter === 'beach') {
+        show = type === 'beach';
+      } else if (filter === 'mexico') {
+        show = region === 'mexico';
+      } else if (filter === 'city') {
+        show = type === 'city' || type === 'desert';
+      } else if (filter === 'great-weather') {
+        show = weather === 'great';
+      } else if (filter === 'top-kids') {
+        show = kids >= 4;
+      } else if (filter === 'cruise') {
+        show = type === 'cruise';
+      } else if (filter === 'theme-park') {
+        show = type === 'theme-park';
+      }
+      card.classList.toggle('hidden', !show);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const barColors = { 5: '#27AE60', 4: '#58C87A', 3: '#E8A000', 2: '#E05C40', 1: '#C0392B' };
+    const scoreColors = { 5: '#1A6B30', 4: '#2A7A3E', 3: '#8A6000', 2: '#B03020', 1: '#8B1A0A' };
+
+    // Color card score bars and numbers
+    document.querySelectorAll('.score-row .score-item').forEach(item => {
+      const numEl = item.querySelector('.score-num');
+      const barWrap = item.querySelector('.score-bar-wrap');
+      if (!numEl || !barWrap) return;
+      const val = parseInt(numEl.textContent);
+      if (!barColors[val]) return;
+      const bar = barWrap.querySelector('div');
+      if (bar) bar.style.background = barColors[val];
+      numEl.style.color = scoreColors[val];
+      numEl.style.fontWeight = '700';
+    });
+
+    // Color table + default sort by total desc
+    colorScoreCells();
+    sortTable('total');
+  });
+</script>
+</body>
+</html>
