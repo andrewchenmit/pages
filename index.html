@@ -1,3 +1,333 @@
-<html>
-  <p>Pages placeholder :)</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A & J — pages</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f1117;
+    color: #e8e4dc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    padding: 3rem 2rem 5rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid rgba(232,228,220,0.12);
+  }
+
+  .monogram-label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: rgba(232,228,220,0.35);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .monogram-name {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #e8e4dc;
+    line-height: 1;
+  }
+
+  .sort-toggle {
+    display: flex;
+    gap: 3px;
+    background: rgba(232,228,220,0.06);
+    border-radius: 8px;
+    padding: 3px;
+  }
+
+  .sort-btn {
+    background: none;
+    border: none;
+    color: rgba(232,228,220,0.38);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .sort-btn.active {
+    background: rgba(232,228,220,0.12);
+    color: #e8e4dc;
+  }
+
+  .category { margin-bottom: 2.5rem; }
+
+  .category-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(232,228,220,0.28);
+    text-transform: uppercase;
+    margin-bottom: 0.65rem;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 2px; }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1rem;
+    background: rgba(232,228,220,0.04);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    border-left: 2px solid transparent;
+    transition: background 0.12s;
+  }
+
+  .card:hover { background: rgba(232,228,220,0.09); }
+
+  .card.vacations  { border-left-color: #378ADD; }
+  .card.proposals  { border-left-color: #D4537E; }
+  .card.comparisons{ border-left-color: #1D9E75; }
+  .card.gifts      { border-left-color: #EF9F27; }
+
+  .card-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .card.vacations  .card-icon { background: rgba(55,138,221,0.12);  color: #85B7EB; }
+  .card.proposals  .card-icon { background: rgba(212,83,126,0.12);  color: #ED93B1; }
+  .card.comparisons .card-icon{ background: rgba(29,158,117,0.12);  color: #5DCAA5; }
+  .card.gifts      .card-icon { background: rgba(239,159,39,0.13);  color: #FAC775; }
+
+  .card-body { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e8e4dc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: rgba(232,228,220,0.38);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-date {
+    font-size: 11px;
+    font-family: "SF Mono", "Fira Mono", monospace;
+    color: rgba(232,228,220,0.22);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .flat-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .flat-divider {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(232,228,220,0.22);
+    text-transform: uppercase;
+    padding: 1.1rem 1rem 0.45rem;
+    font-family: "SF Mono", "Fira Mono", monospace;
+  }
+
+  .flat-divider:first-child { padding-top: 0; }
+
+  @media (max-width: 480px) {
+    body { padding: 2rem 1rem 4rem; }
+    .monogram-name { font-size: 22px; }
+    .card-date { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <div class="monogram-label">pages.andrewjenny.com</div>
+    <div class="monogram-name">A &amp; J</div>
+  </div>
+  <div class="sort-toggle">
+    <button class="sort-btn active" id="btn-category" onclick="setSort('category')">By category</button>
+    <button class="sort-btn" id="btn-chrono" onclick="setSort('chrono')">Chronological</button>
+  </div>
+</header>
+
+<main id="view-category">
+
+  <section class="category">
+    <div class="category-label">Vacations</div>
+    <div class="cards">
+      <a class="card vacations" href="/1009disneycruise/">
+        <div class="card-icon"><i class="ti ti-ship" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Disney Magic Halloween cruise</div>
+          <div class="card-desc">San Diego · Oct 8–12, 2026</div>
+        </div>
+        <div class="card-date">2026-10</div>
+      </a>
+      <a class="card vacations" href="/olympic/">
+        <div class="card-icon"><i class="ti ti-mountain" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Olympic National Park &amp; Seattle</div>
+          <div class="card-desc">Washington · Aug 2026</div>
+        </div>
+        <div class="card-date">2026-08</div>
+      </a>
+      <a class="card vacations" href="/glacier/">
+        <div class="card-icon"><i class="ti ti-snowflake" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Glacier National Park</div>
+          <div class="card-desc">Montana · Jun 26 – Jul 3, 2026</div>
+        </div>
+        <div class="card-date">2026-06</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="category">
+    <div class="category-label">Proposals</div>
+    <div class="cards">
+      <a class="card proposals" href="/floparty/">
+        <div class="card-icon"><i class="ti ti-confetti" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Florence's 4th birthday party</div>
+          <div class="card-desc">Big Fun Pie · Jun 13, 2026</div>
+        </div>
+        <div class="card-date">2026-06-13</div>
+      </a>
+      <a class="card proposals" href="/mothersday2026plans/">
+        <div class="card-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Mother's Day 2026</div>
+          <div class="card-desc">Card + day itinerary · May 10, 2026</div>
+        </div>
+        <div class="card-date">2026-05-10</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="category">
+    <div class="category-label">Comparisons</div>
+    <div class="cards">
+      <a class="card comparisons" href="/8-6-26_exploration/">
+        <div class="card-icon"><i class="ti ti-map-search" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Where should we go in August?</div>
+          <div class="card-desc">Summer 2026 destination comparison · SJC direct</div>
+        </div>
+        <div class="card-date">2026-06</div>
+      </a>
+      <a class="card comparisons" href="/mothersday2026restaurants/">
+        <div class="card-icon"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Mother's Day restaurants</div>
+          <div class="card-desc">Dinner comparison · May 10, 2026</div>
+        </div>
+        <div class="card-date">2026-05-10</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="category">
+    <div class="category-label">Gifts</div>
+    <div class="cards">
+      <a class="card gifts" href="/wooversary2026gift/">
+        <div class="card-icon"><i class="ti ti-coffee" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">De'Longhi superautomatic reveal</div>
+          <div class="card-desc">Anniversary gift · May 27, 2026</div>
+        </div>
+        <div class="card-date">2026-05-27</div>
+      </a>
+      <a class="card gifts" href="/mothersday2026gift/">
+        <div class="card-icon"><i class="ti ti-movie" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">A message from Florence</div>
+          <div class="card-desc">Flo's video for mom · May 10, 2026</div>
+        </div>
+        <div class="card-date">2026-05-10</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<div id="view-chrono" style="display:none;">
+  <div class="flat-list" id="chrono-list"></div>
+</div>
+
+<script>
+const pages = [
+  { title: "Disney Magic Halloween cruise",       desc: "San Diego · Oct 8–12, 2026",          date: "2026-10-08", cat: "vacations",   icon: "ti-ship",             href: "/1009disneycruise/" },
+  { title: "Olympic National Park & Seattle",     desc: "Washington · Aug 2026",               date: "2026-08-01", cat: "vacations",   icon: "ti-mountain",         href: "/olympic/" },
+  { title: "Florence's 4th birthday party",       desc: "Big Fun Pie · Jun 13, 2026",          date: "2026-06-13", cat: "proposals",   icon: "ti-confetti",         href: "/floparty/" },
+  { title: "Glacier National Park",               desc: "Montana · Jun 26 – Jul 3, 2026",      date: "2026-06-26", cat: "vacations",   icon: "ti-snowflake",        href: "/glacier/" },
+  { title: "Where should we go in August?",       desc: "Summer 2026 destination comparison · SJC direct", date: "2026-06-01", cat: "comparisons", icon: "ti-map-search",       href: "/8-6-26_exploration/" },
+  { title: "De'Longhi superautomatic reveal",     desc: "Anniversary gift · May 27, 2026",     date: "2026-05-27", cat: "gifts",       icon: "ti-coffee",           href: "/wooversary2026gift/" },
+  { title: "Mother's Day 2026",                   desc: "Card + day itinerary · May 10, 2026", date: "2026-05-10", cat: "proposals",   icon: "ti-heart",            href: "/mothersday2026plans/" },
+  { title: "Mother's Day restaurants",            desc: "Dinner comparison · May 10, 2026",    date: "2026-05-10", cat: "comparisons", icon: "ti-tools-kitchen-2",  href: "/mothersday2026restaurants/" },
+  { title: "A message from Florence",             desc: "Flo's video for mom · May 10, 2026",  date: "2026-05-10", cat: "gifts",       icon: "ti-movie",            href: "/mothersday2026gift/" },
+].sort((a, b) => b.date.localeCompare(a.date));
+
+function buildChronoList() {
+  const el = document.getElementById('chrono-list');
+  el.innerHTML = '';
+  let lastDate = null;
+  pages.forEach(p => {
+    if (p.date !== lastDate) {
+      const div = document.createElement('div');
+      div.className = 'flat-divider';
+      div.textContent = p.date;
+      el.appendChild(div);
+      lastDate = p.date;
+    }
+    const a = document.createElement('a');
+    a.className = 'card ' + p.cat;
+    a.href = p.href;
+    a.innerHTML =
+      '<div class="card-icon"><i class="ti ' + p.icon + '" aria-hidden="true"></i></div>' +
+      '<div class="card-body">' +
+        '<div class="card-title">' + p.title + '</div>' +
+        '<div class="card-desc">' + p.desc + '</div>' +
+      '</div>';
+    el.appendChild(a);
+  });
+}
+
+function setSort(mode) {
+  document.getElementById('view-category').style.display = mode === 'category' ? '' : 'none';
+  document.getElementById('view-chrono').style.display  = mode === 'chrono'   ? '' : 'none';
+  document.getElementById('btn-category').classList.toggle('active', mode === 'category');
+  document.getElementById('btn-chrono').classList.toggle('active',   mode === 'chrono');
+  if (mode === 'chrono') buildChronoList();
+}
+</script>
+
+</body>
 </html>
