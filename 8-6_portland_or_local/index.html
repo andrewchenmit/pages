@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portland vs. Day Trips — Aug 6–9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    background: #F7F6F3;
+    color: #1A1A18;
+    padding: 40px 24px 64px;
+  }
+
+  .page-header {
+    max-width: 960px;
+    margin: 0 auto 32px;
+  }
+  .page-header h1 {
+    font-size: 26px;
+    font-weight: 500;
+    color: #1A1A18;
+    margin-bottom: 4px;
+  }
+  .page-meta {
+    font-size: 13px;
+    color: #7A7A74;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    background: #FEF3CD;
+    color: #8A6000;
+    border: 0.5px solid #E8C84A;
+  }
+
+  .grid {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .col {
+    background: #FFFFFF;
+    border: 0.5px solid #DDDBD4;
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .col-head {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1A1A18;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .col-head i { font-size: 18px; color: #7A7A74; }
+  .col-sub {
+    font-size: 12px;
+    color: #7A7A74;
+    margin-bottom: 16px;
+  }
+
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .metric {
+    background: #F4F3EF;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .metric-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: #7A7A74;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .metric-val {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1A1A18;
+    line-height: 1.2;
+  }
+  .metric-sub {
+    font-size: 11px;
+    color: #9A9990;
+    margin-top: 2px;
+  }
+  .metric-total {
+    background: #F4F3EF;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .metric-total .metric-val { font-size: 22px; }
+
+  .divider {
+    height: 0.5px;
+    background: #DDDBD4;
+    margin: 16px 0;
+  }
+
+  .section-head {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9A9990;
+    margin-bottom: 10px;
+  }
+
+  .activity {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 6px 0;
+    border-bottom: 0.5px solid #EEEDE8;
+    font-size: 13px;
+  }
+  .activity:last-child { border-bottom: none; }
+  .activity i { font-size: 15px; color: #9A9990; margin-top: 2px; flex-shrink: 0; min-width: 15px; display: inline-block; }
+  .activity-name { font-weight: 500; color: #1A1A18; }
+  .activity-note { font-size: 11px; color: #7A7A74; margin-top: 1px; line-height: 1.4; }
+
+  .pro-con {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 13px;
+    padding: 4px 0;
+    color: #1A1A18;
+    line-height: 1.45;
+  }
+  .pro { color: #2E7A3E; font-weight: 500; flex-shrink: 0; }
+  .con { color: #B03020; font-weight: 500; flex-shrink: 0; }
+
+  .footer-note {
+    max-width: 960px;
+    margin: 14px auto 0;
+    background: #FFFFFF;
+    border: 0.5px solid #DDDBD4;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #7A7A74;
+    line-height: 1.55;
+  }
+  .footer-note strong { color: #1A1A18; font-weight: 500; }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Portland trip vs. local day trips</h1>
+  <div class="page-meta">
+    <span>Aug 6–9 · Family of 4 · 4-day window</span>
+    <span class="badge">Cost-sensitive decision</span>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- PORTLAND -->
+  <div class="col">
+    <div class="col-head"><i class="ti ti-plane"></i> Portland trip</div>
+    <div class="col-sub">4 days away, flights Aug 6–9</div>
+
+    <div class="metric-row">
+      <div class="metric">
+        <div class="metric-label">Flights (4 pax)</div>
+        <div class="metric-val">~$1,800</div>
+        <div class="metric-sub">$450/pp × 4, after taxes</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Hotel (3 nights)</div>
+        <div class="metric-val">~$600–900</div>
+        <div class="metric-sub">$200–300/night est.</div>
+      </div>
+    </div>
+    <div class="metric-total">
+      <div class="metric-label">Total est. trip cost</div>
+      <div class="metric-val">~$2,800–3,500+</div>
+      <div class="metric-sub">Before food, activities, car rental</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-head">Kid highlights</div>
+
+    <div class="activity"><i class="ti ti-star"></i><div><div class="activity-name">Enchanted Forest</div><div class="activity-note">~1 hr south — highly rated kids theme park, storybook theming</div></div></div>
+    <div class="activity"><i class="ti ti-roller-skating"></i><div><div class="activity-name">Oaks Amusement Park</div><div class="activity-note">Flat walkable layout, classic kiddie rides, indoor roller rink, train through trees</div></div></div>
+    <div class="activity"><i class="ti ti-microscope"></i><div><div class="activity-name">OMSI</div><div class="activity-note">Hands-on science museum, good for Florence's age</div></div></div>
+    <div class="activity"><i class="ti ti-paw"></i><div><div class="activity-name">Oregon Zoo</div><div class="activity-note">Well-regarded zoo, full day activity</div></div></div>
+
+    <div class="divider"></div>
+    <div class="section-head">Adult highlights (kid-compatible)</div>
+
+    <div class="activity"><i class="ti ti-map-pin"></i><div><div class="activity-name">Multnomah Falls day trip</div><div class="activity-note">~1 hr east, iconic waterfall, easy short walk for kids</div></div></div>
+    <div class="activity"><i class="ti ti-book"></i><div><div class="activity-name">Powell's Books</div><div class="activity-note">World's largest bookstore, kids love the children's section</div></div></div>
+    <div class="activity"><i class="ti ti-circle-dotted"></i><div><div class="activity-name">Blue Star / Voodoo Doughnuts</div><div class="activity-note">Morning ritual, kids love the wild shapes</div></div></div>
+
+    <div class="divider"></div>
+    <div class="section-head">Pros / cons</div>
+    <div class="pro-con"><span class="pro">+</span> Makes full use of 4-day window — real trip feel</div>
+    <div class="pro-con"><span class="pro">+</span> Best August weather of any destination</div>
+    <div class="pro-con"><span class="pro">+</span> Enchanted Forest + Oaks Park = strong kid anchors</div>
+    <div class="pro-con"><span class="pro">+</span> Adult experience is genuinely excellent</div>
+    <div class="pro-con"><span class="con">−</span> ~$2,800–3,500+ before food and activities</div>
+    <div class="pro-con"><span class="con">−</span> No beach/water fallback for kids</div>
+    <div class="pro-con"><span class="con">−</span> Flight logistics with two young kids</div>
+  </div>
+
+  <!-- DAY TRIPS -->
+  <div class="col">
+    <div class="col-head"><i class="ti ti-car"></i> Local day trips</div>
+    <div class="col-sub">Drive-based, sleep at home each night</div>
+
+    <div class="metric-row">
+      <div class="metric">
+        <div class="metric-label">Flights</div>
+        <div class="metric-val">$0</div>
+        <div class="metric-sub">Drive only</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Hotel</div>
+        <div class="metric-val">$0</div>
+        <div class="metric-sub">Sleep at home</div>
+      </div>
+    </div>
+    <div class="metric-total">
+      <div class="metric-label">Total est. trip cost</div>
+      <div class="metric-val">~$400–800</div>
+      <div class="metric-sub">Gas + entry fees + food only</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-head">Day trip options</div>
+
+    <div class="activity"><i class="ti ti-roller-skating"></i><div><div class="activity-name">Great America — Planet Snoopy</div><div class="activity-note">15 min away. Closing 2027 — may be last chance. Florence rides ~10 attractions solo or with adult</div></div></div>
+    <div class="activity"><i class="ti ti-trees"></i><div><div class="activity-name">Gilroy Gardens</div><div class="activity-note">45 min south. Small, quiet, built for young kids. Botanical setting, low crowds</div></div></div>
+    <div class="activity"><i class="ti ti-umbrella"></i><div><div class="activity-name">Santa Cruz Boardwalk + Beach</div><div class="activity-note">1.5 hrs. Beach + classic rides right on the sand. Best water option on this list</div></div></div>
+    <div class="activity"><i class="ti ti-star"></i><div><div class="activity-name">Happy Hollow (San Jose)</div><div class="activity-note">Very close. Zoo + amusement park designed for young children</div></div></div>
+    <div class="activity"><i class="ti ti-heart"></i><div><div class="activity-name">Children's Fairyland (Oakland)</div><div class="activity-note">1.5 hrs. Storybook-themed park for under-6s. Florence's exact demographic</div></div></div>
+
+    <div class="divider"></div>
+    <div class="section-head">Sample 4-day itinerary</div>
+
+    <div class="activity"><i class="ti ti-calendar"></i><div><div class="activity-name">Thu Aug 6</div><div class="activity-note">Great America Planet Snoopy — weekday = less busy, last years of operation</div></div></div>
+    <div class="activity"><i class="ti ti-calendar"></i><div><div class="activity-name">Fri Aug 7</div><div class="activity-note">Gilroy Gardens or Happy Hollow — low-key, Florence-paced</div></div></div>
+    <div class="activity"><i class="ti ti-calendar"></i><div><div class="activity-name">Sat Aug 8</div><div class="activity-note">Santa Cruz Beach + Boardwalk — beach day with rides</div></div></div>
+    <div class="activity"><i class="ti ti-calendar"></i><div><div class="activity-name">Sun Aug 9</div><div class="activity-note">Children's Fairyland or flex/rest day</div></div></div>
+
+    <div class="divider"></div>
+    <div class="section-head">Pros / cons</div>
+    <div class="pro-con"><span class="pro">+</span> Saves ~$2,000–3,000 vs. Portland</div>
+    <div class="pro-con"><span class="pro">+</span> Great America closing soon — timely visit</div>
+    <div class="pro-con"><span class="pro">+</span> No packing, no airport, no logistics stress</div>
+    <div class="pro-con"><span class="pro">+</span> Santa Cruz = beach water win for kids</div>
+    <div class="pro-con"><span class="pro">+</span> Each day independently scoped — easy to cancel/change</div>
+    <div class="pro-con"><span class="con">−</span> Doesn't feel like a "real trip" — no getaway quality</div>
+    <div class="pro-con"><span class="con">−</span> No hotel pool or change of scenery</div>
+    <div class="pro-con"><span class="con">−</span> Adult experience is thinner</div>
+  </div>
+
+</div>
+
+<div class="footer-note">
+  <strong>The key question:</strong> Is the "real trip" feeling worth ~$2,000–3,000 extra? Portland is the better adult trip; day trips are the better kid-per-dollar value. The Great America closing argument is real — Planet Snoopy in 2027 may be gone.
+</div>
+
+</body>
+</html>
