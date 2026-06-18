@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,6 +236,14 @@
   <section class="category">
     <div class="category-label">Comparisons</div>
     <div class="cards">
+      <a class="card comparisons" href="/8-6_portland_or_local/">
+        <div class="card-icon"><i class="ti ti-git-branch" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Portland or local day trips?</div>
+          <div class="card-desc">Aug 6–9 trip decision · Summer 2026</div>
+        </div>
+        <div class="card-date">2026-06</div>
+      </a>
       <a class="card comparisons" href="/8-6-26_exploration/">
         <div class="card-icon"><i class="ti ti-map-search" aria-hidden="true"></i></div>
         <div class="card-body">
@@ -284,15 +293,16 @@
 
 <script>
 const pages = [
-  { title: "Disney Magic Halloween cruise",       desc: "San Diego · Oct 8–12, 2026",          date: "2026-10-08", cat: "vacations",   icon: "ti-ship",             href: "/1009disneycruise/" },
-  { title: "Olympic National Park & Seattle",     desc: "Washington · Aug 2026",               date: "2026-08-01", cat: "vacations",   icon: "ti-mountain",         href: "/olympic/" },
-  { title: "Florence's 4th birthday party",       desc: "Big Fun Pie · Jun 13, 2026",          date: "2026-06-13", cat: "proposals",   icon: "ti-confetti",         href: "/floparty/" },
-  { title: "Glacier National Park",               desc: "Montana · Jun 26 – Jul 3, 2026",      date: "2026-06-26", cat: "vacations",   icon: "ti-snowflake",        href: "/glacier/" },
+  { title: "Disney Magic Halloween cruise",       desc: "San Diego · Oct 8–12, 2026",                      date: "2026-10-08", cat: "vacations",   icon: "ti-ship",             href: "/1009disneycruise/" },
+  { title: "Olympic National Park & Seattle",     desc: "Washington · Aug 2026",                           date: "2026-08-01", cat: "vacations",   icon: "ti-mountain",         href: "/olympic/" },
+  { title: "Florence's 4th birthday party",       desc: "Big Fun Pie · Jun 13, 2026",                      date: "2026-06-13", cat: "proposals",   icon: "ti-confetti",         href: "/floparty/" },
+  { title: "Glacier National Park",               desc: "Montana · Jun 26 – Jul 3, 2026",                  date: "2026-06-26", cat: "vacations",   icon: "ti-snowflake",        href: "/glacier/" },
+  { title: "Portland or local day trips?",        desc: "Aug 6–9 trip decision · Summer 2026",             date: "2026-06-17", cat: "comparisons", icon: "ti-git-branch",       href: "/8-6_portland_or_local/" },
   { title: "Where should we go in August?",       desc: "Summer 2026 destination comparison · SJC direct", date: "2026-06-01", cat: "comparisons", icon: "ti-map-search",       href: "/8-6-26_exploration/" },
-  { title: "De'Longhi superautomatic reveal",     desc: "Anniversary gift · May 27, 2026",     date: "2026-05-27", cat: "gifts",       icon: "ti-coffee",           href: "/wooversary2026gift/" },
-  { title: "Mother's Day 2026",                   desc: "Card + day itinerary · May 10, 2026", date: "2026-05-10", cat: "proposals",   icon: "ti-heart",            href: "/mothersday2026plans/" },
-  { title: "Mother's Day restaurants",            desc: "Dinner comparison · May 10, 2026",    date: "2026-05-10", cat: "comparisons", icon: "ti-tools-kitchen-2",  href: "/mothersday2026restaurants/" },
-  { title: "A message from Florence",             desc: "Flo's video for mom · May 10, 2026",  date: "2026-05-10", cat: "gifts",       icon: "ti-movie",            href: "/mothersday2026gift/" },
+  { title: "De'Longhi superautomatic reveal",     desc: "Anniversary gift · May 27, 2026",                 date: "2026-05-27", cat: "gifts",       icon: "ti-coffee",           href: "/wooversary2026gift/" },
+  { title: "Mother's Day 2026",                   desc: "Card + day itinerary · May 10, 2026",             date: "2026-05-10", cat: "proposals",   icon: "ti-heart",            href: "/mothersday2026plans/" },
+  { title: "Mother's Day restaurants",            desc: "Dinner comparison · May 10, 2026",                date: "2026-05-10", cat: "comparisons", icon: "ti-tools-kitchen-2",  href: "/mothersday2026restaurants/" },
+  { title: "A message from Florence",             desc: "Flo's video for mom · May 10, 2026",              date: "2026-05-10", cat: "gifts",       icon: "ti-movie",            href: "/mothersday2026gift/" },
 ].sort((a, b) => b.date.localeCompare(a.date));
 
 function buildChronoList() {
